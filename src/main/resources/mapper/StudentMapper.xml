@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.zhku.education.pojo.dao.StudentMapper" >
+  <resultMap id="BaseResultMap" type="cn.zhku.education.pojo.entity.Student" >
+    <id column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="college_class" property="collegeClass" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="playtimes" property="playtimes" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="collegeClass" property="collegeclass" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    phone, college_class, name, playtimes, score, collegeClass
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.zhku.education.pojo.entity.StudentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from student
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where phone = #{phone,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from student
+    where phone = #{phone,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.zhku.education.pojo.entity.StudentExample" >
+    delete from student
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.zhku.education.pojo.entity.Student" >
+    insert into student (phone, college_class, name, 
+      playtimes, score, collegeClass
+      )
+    values (#{phone,jdbcType=VARCHAR}, #{collegeClass,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{playtimes,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{collegeclass,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.zhku.education.pojo.entity.Student" >
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="collegeClass != null" >
+        college_class,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="playtimes != null" >
+        playtimes,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="collegeclass != null" >
+        collegeClass,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="collegeClass != null" >
+        #{collegeClass,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="playtimes != null" >
+        #{playtimes,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="collegeclass != null" >
+        #{collegeclass,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.zhku.education.pojo.entity.StudentExample" resultType="java.lang.Integer" >
+    select count(*) from student
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update student
+    <set >
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collegeClass != null" >
+        college_class = #{record.collegeClass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.playtimes != null" >
+        playtimes = #{record.playtimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.collegeclass != null" >
+        collegeClass = #{record.collegeclass,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update student
+    set phone = #{record.phone,jdbcType=VARCHAR},
+      college_class = #{record.collegeClass,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      playtimes = #{record.playtimes,jdbcType=INTEGER},
+      score = #{record.score,jdbcType=INTEGER},
+      collegeClass = #{record.collegeclass,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.zhku.education.pojo.entity.Student" >
+    update student
+    <set >
+      <if test="collegeClass != null" >
+        college_class = #{collegeClass,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="playtimes != null" >
+        playtimes = #{playtimes,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="collegeclass != null" >
+        collegeClass = #{collegeclass,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where phone = #{phone,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.zhku.education.pojo.entity.Student" >
+    update student
+    set college_class = #{collegeClass,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      playtimes = #{playtimes,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      collegeClass = #{collegeclass,jdbcType=VARCHAR}
+    where phone = #{phone,jdbcType=VARCHAR}
+  </update>
+</mapper>

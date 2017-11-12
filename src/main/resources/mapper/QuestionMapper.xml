@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.zhku.education.pojo.dao.QuestionMapper" >
+  <resultMap id="BaseResultMap" type="cn.zhku.education.pojo.entity.Question" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="qtype" property="qtype" jdbcType="VARCHAR" />
+    <result column="qcontent" property="qcontent" jdbcType="VARCHAR" />
+    <result column="a" property="a" jdbcType="VARCHAR" />
+    <result column="b" property="b" jdbcType="VARCHAR" />
+    <result column="c" property="c" jdbcType="VARCHAR" />
+    <result column="d" property="d" jdbcType="VARCHAR" />
+    <result column="answer" property="answer" jdbcType="VARCHAR" />
+    <result column="qexplain" property="qexplain" jdbcType="VARCHAR" />
+    <result column="qvalue" property="qvalue" jdbcType="INTEGER" />
+    <result column="entertime" property="entertime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, qtype, qcontent, a, b, c, d, answer, qexplain, qvalue, entertime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.zhku.education.pojo.entity.QuestionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="cn.zhku.education.pojo.entity.QuestionExample" >
+    delete from question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.zhku.education.pojo.entity.Question" >
+    insert into question (id, qtype, qcontent, 
+      a, b, c, d, 
+      answer, qexplain, qvalue, 
+      entertime)
+    values (#{id,jdbcType=INTEGER}, #{qtype,jdbcType=VARCHAR}, #{qcontent,jdbcType=VARCHAR}, 
+      #{a,jdbcType=VARCHAR}, #{b,jdbcType=VARCHAR}, #{c,jdbcType=VARCHAR}, #{d,jdbcType=VARCHAR}, 
+      #{answer,jdbcType=VARCHAR}, #{qexplain,jdbcType=VARCHAR}, #{qvalue,jdbcType=INTEGER}, 
+      #{entertime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.zhku.education.pojo.entity.Question" >
+    insert into question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="qtype != null" >
+        qtype,
+      </if>
+      <if test="qcontent != null" >
+        qcontent,
+      </if>
+      <if test="a != null" >
+        a,
+      </if>
+      <if test="b != null" >
+        b,
+      </if>
+      <if test="c != null" >
+        c,
+      </if>
+      <if test="d != null" >
+        d,
+      </if>
+      <if test="answer != null" >
+        answer,
+      </if>
+      <if test="qexplain != null" >
+        qexplain,
+      </if>
+      <if test="qvalue != null" >
+        qvalue,
+      </if>
+      <if test="entertime != null" >
+        entertime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="qtype != null" >
+        #{qtype,jdbcType=VARCHAR},
+      </if>
+      <if test="qcontent != null" >
+        #{qcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="a != null" >
+        #{a,jdbcType=VARCHAR},
+      </if>
+      <if test="b != null" >
+        #{b,jdbcType=VARCHAR},
+      </if>
+      <if test="c != null" >
+        #{c,jdbcType=VARCHAR},
+      </if>
+      <if test="d != null" >
+        #{d,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="qexplain != null" >
+        #{qexplain,jdbcType=VARCHAR},
+      </if>
+      <if test="qvalue != null" >
+        #{qvalue,jdbcType=INTEGER},
+      </if>
+      <if test="entertime != null" >
+        #{entertime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.zhku.education.pojo.entity.QuestionExample" resultType="java.lang.Integer" >
+    select count(*) from question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update question
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.qtype != null" >
+        qtype = #{record.qtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qcontent != null" >
+        qcontent = #{record.qcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.a != null" >
+        a = #{record.a,jdbcType=VARCHAR},
+      </if>
+      <if test="record.b != null" >
+        b = #{record.b,jdbcType=VARCHAR},
+      </if>
+      <if test="record.c != null" >
+        c = #{record.c,jdbcType=VARCHAR},
+      </if>
+      <if test="record.d != null" >
+        d = #{record.d,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answer != null" >
+        answer = #{record.answer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qexplain != null" >
+        qexplain = #{record.qexplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qvalue != null" >
+        qvalue = #{record.qvalue,jdbcType=INTEGER},
+      </if>
+      <if test="record.entertime != null" >
+        entertime = #{record.entertime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update question
+    set id = #{record.id,jdbcType=INTEGER},
+      qtype = #{record.qtype,jdbcType=VARCHAR},
+      qcontent = #{record.qcontent,jdbcType=VARCHAR},
+      a = #{record.a,jdbcType=VARCHAR},
+      b = #{record.b,jdbcType=VARCHAR},
+      c = #{record.c,jdbcType=VARCHAR},
+      d = #{record.d,jdbcType=VARCHAR},
+      answer = #{record.answer,jdbcType=VARCHAR},
+      qexplain = #{record.qexplain,jdbcType=VARCHAR},
+      qvalue = #{record.qvalue,jdbcType=INTEGER},
+      entertime = #{record.entertime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
