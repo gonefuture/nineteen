@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author : 钱伟健 gonefuture@qq.com
@@ -40,7 +41,7 @@ public class StudentController {
      */
     @RequestMapping("/student/begin")
     public Message begin(Student student, HttpSession httpSession) {
-
+        student.setScore(0);
         if (studentMapper.selectByPrimaryKey(student.getPhone()) != null){
             beginGame(httpSession,student);
             return new Message("1","欢迎继续游戏，为社会主义奉献！");
@@ -57,6 +58,7 @@ public class StudentController {
         httpSession.setAttribute("student",student);
         History history = new History();
         history.setPhone(student.getPhone());
+        history.setHid(UUID.randomUUID().toString().replace("-","").toUpperCase());
         historyMapper.insert(history);
         httpSession.setAttribute("history",history);
     }
@@ -69,7 +71,7 @@ public class StudentController {
      */
     @RequestMapping("/prePass")
     public Message prePass(Integer score,HttpSession httpSession) {
-        if (score == null)
+        if (score == null  || score  > 120)
             score = 0 ;
         Student studentSession = (Student) httpSession.getAttribute("student");
         History historySession = (History) httpSession.getAttribute("history");
@@ -80,8 +82,8 @@ public class StudentController {
         history.setPhone(studentSession.getPhone());
         history.setHid(history.getHid());
 
-        if (historyMapper.updateByPrimaryKey(history) == 1)
-            return new Message("1","记录最后一关成绩成功");
+        if (historyMapper.updateByPrimaryKeySelective(history) == 1)
+            return new Message("1","记录第一关成绩成功");
         else
             return new Message("2","记录成绩失败");
     }
@@ -95,7 +97,7 @@ public class StudentController {
      */
     @RequestMapping("/lastPass")
     public Message lastPass(Integer score,HttpSession httpSession) {
-        if (score == null)
+        if (score == null || score > 500)
             score = 0 ;
         //  获取session中的对象
         Student studentSession = (Student) httpSession.getAttribute("student");
@@ -110,11 +112,11 @@ public class StudentController {
         int firstScore = historyMapper.selectByPrimaryKey(historySession.getHid()).getFirstScore();
         history.setScore( firstScore+ score);
 
-        if (historyMapper.insert(history) == 1){
+        if (historyMapper.updateByPrimaryKeySelective(history) == 1){
             Student student = new Student();
             student.setPhone(studentSession.getPhone());
             student.setScore(firstScore+score);
-            studentMapper.updateByPrimaryKey(student);
+            studentMapper.updateByPrimaryKeySelective(student);
             return new Message("1","记录最后一关成绩成功");
         }
         else

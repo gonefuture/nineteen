@@ -115,52 +115,62 @@ public class HistoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andHidEqualTo(Long value) {
+        public Criteria andHidEqualTo(String value) {
             addCriterion("hid =", value, "hid");
             return (Criteria) this;
         }
 
-        public Criteria andHidNotEqualTo(Long value) {
+        public Criteria andHidNotEqualTo(String value) {
             addCriterion("hid <>", value, "hid");
             return (Criteria) this;
         }
 
-        public Criteria andHidGreaterThan(Long value) {
+        public Criteria andHidGreaterThan(String value) {
             addCriterion("hid >", value, "hid");
             return (Criteria) this;
         }
 
-        public Criteria andHidGreaterThanOrEqualTo(Long value) {
+        public Criteria andHidGreaterThanOrEqualTo(String value) {
             addCriterion("hid >=", value, "hid");
             return (Criteria) this;
         }
 
-        public Criteria andHidLessThan(Long value) {
+        public Criteria andHidLessThan(String value) {
             addCriterion("hid <", value, "hid");
             return (Criteria) this;
         }
 
-        public Criteria andHidLessThanOrEqualTo(Long value) {
+        public Criteria andHidLessThanOrEqualTo(String value) {
             addCriterion("hid <=", value, "hid");
             return (Criteria) this;
         }
 
-        public Criteria andHidIn(List<Long> values) {
+        public Criteria andHidLike(String value) {
+            addCriterion("hid like", value, "hid");
+            return (Criteria) this;
+        }
+
+        public Criteria andHidNotLike(String value) {
+            addCriterion("hid not like", value, "hid");
+            return (Criteria) this;
+        }
+
+        public Criteria andHidIn(List<String> values) {
             addCriterion("hid in", values, "hid");
             return (Criteria) this;
         }
 
-        public Criteria andHidNotIn(List<Long> values) {
+        public Criteria andHidNotIn(List<String> values) {
             addCriterion("hid not in", values, "hid");
             return (Criteria) this;
         }
 
-        public Criteria andHidBetween(Long value1, Long value2) {
+        public Criteria andHidBetween(String value1, String value2) {
             addCriterion("hid between", value1, value2, "hid");
             return (Criteria) this;
         }
 
-        public Criteria andHidNotBetween(Long value1, Long value2) {
+        public Criteria andHidNotBetween(String value1, String value2) {
             addCriterion("hid not between", value1, value2, "hid");
             return (Criteria) this;
         }
