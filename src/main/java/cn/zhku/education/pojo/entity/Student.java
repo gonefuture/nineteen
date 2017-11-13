@@ -1,6 +1,7 @@
 package cn.zhku.education.pojo.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Student implements Serializable {
     private String phone;
@@ -14,6 +15,8 @@ public class Student implements Serializable {
     private Integer score;
 
     private Integer lastRank;
+
+    private Date enterTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -65,6 +68,14 @@ public class Student implements Serializable {
         this.lastRank = lastRank;
     }
 
+    public Date getEnterTime() {
+        return enterTime;
+    }
+
+    public void setEnterTime(Date enterTime) {
+        this.enterTime = enterTime;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -77,6 +88,7 @@ public class Student implements Serializable {
         sb.append(", playtimes=").append(playtimes);
         sb.append(", score=").append(score);
         sb.append(", lastRank=").append(lastRank);
+        sb.append(", enterTime=").append(enterTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

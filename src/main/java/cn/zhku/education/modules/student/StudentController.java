@@ -2,7 +2,10 @@ package cn.zhku.education.modules.student;
 
 import cn.zhku.education.model.CommonQo;
 import cn.zhku.education.model.Message;
+import cn.zhku.education.pojo.dao.HistoryMapper;
 import cn.zhku.education.pojo.dao.StudentMapper;
+import cn.zhku.education.pojo.entity.History;
+import cn.zhku.education.pojo.entity.HistoryExample;
 import cn.zhku.education.pojo.entity.Student;
 import cn.zhku.education.pojo.entity.StudentExample;
 import com.github.pagehelper.PageHelper;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * @author : 钱伟健 gonefuture@qq.com
@@ -24,6 +28,9 @@ public class StudentController {
     @Autowired
     StudentMapper studentMapper;
 
+    @Autowired
+    HistoryMapper historyMapper;
+
 
     /**
      *  收集学生信息，开始游戏
@@ -33,37 +40,92 @@ public class StudentController {
      */
     @RequestMapping("/student/begin")
     public Message begin(Student student, HttpSession httpSession) {
+
+        if (studentMapper.selectByPrimaryKey(student.getPhone()) != null){
+            beginGame(httpSession,student);
+            return new Message("1","欢迎继续游戏，为社会主义奉献！");
+        }
         if (studentMapper.insert(student) == 1){
-            httpSession.setAttribute("student",student);
+            beginGame(httpSession,student);
             return new Message("1","学生开始游戏成功");
         }
         else
             return new Message("2","学生开始游戏失败，请检查你输入的信息");
     }
 
+    private void beginGame(HttpSession httpSession,Student student) {
+        httpSession.setAttribute("student",student);
+        History history = new History();
+        history.setPhone(student.getPhone());
+        historyMapper.insert(history);
+        httpSession.setAttribute("history",history);
+    }
 
     /**
-     *  获取最后一关的数据
+     *  记录第一关成绩
+     * @param score 成绩
+     * @param httpSession   当前会话
+     * @return message
+     */
+    @RequestMapping("/prePass")
+    public Message prePass(Integer score,HttpSession httpSession) {
+        if (score == null)
+            score = 0 ;
+        Student studentSession = (Student) httpSession.getAttribute("student");
+        History historySession = (History) httpSession.getAttribute("history");
+        if ( studentSession == null || historySession == null)
+            return new Message("2","请先完成前面的关卡");
+        History history = getScore(studentSession,historySession);
+        history.setFirstScore(score);
+        history.setPhone(studentSession.getPhone());
+        history.setHid(history.getHid());
+
+        if (historyMapper.updateByPrimaryKey(history) == 1)
+            return new Message("1","记录最后一关成绩成功");
+        else
+            return new Message("2","记录成绩失败");
+    }
+
+
+    /**
+     *  记录最后一关的成绩
      * @param score 分数
      * @param httpSession   当前session
      * @return  Message
      */
-    @RequestMapping("/student/lastPass")
+    @RequestMapping("/lastPass")
     public Message lastPass(Integer score,HttpSession httpSession) {
         if (score == null)
             score = 0 ;
+        //  获取session中的对象
         Student studentSession = (Student) httpSession.getAttribute("student");
-        Student student = new Student();
-        student.setScore(score);
-
-        if ( studentSession == null)
+        History historySession = (History) httpSession.getAttribute("history");
+        if ( studentSession == null || historySession == null)
             return new Message("2","请先完成前面的关卡");
-        student.setPhone(studentSession.getPhone());
+        History history = getScore(studentSession,historySession);
+        history.setHid(historySession.getHid());
+        //  设置第二关分数
+        history.setSecondScore(score);
+        //  设置总分数
+        int firstScore = historyMapper.selectByPrimaryKey(historySession.getHid()).getFirstScore();
+        history.setScore( firstScore+ score);
 
-        if (studentMapper.updateByPrimaryKey(student) == 1)
+        if (historyMapper.insert(history) == 1){
+            Student student = new Student();
+            student.setPhone(studentSession.getPhone());
+            student.setScore(firstScore+score);
+            studentMapper.updateByPrimaryKey(student);
             return new Message("1","记录最后一关成绩成功");
+        }
         else
             return new Message("2","记录成绩失败");
+    }
+
+    private History getScore(Student studentSession,History historySession) {
+        History history = new History();
+        history.setPhone(studentSession.getPhone());
+        history.setHid(historySession.getHid());
+        return history;
     }
 
     /**
@@ -88,6 +150,22 @@ public class StudentController {
         PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageNum());
         StudentExample studentExample = new StudentExample();
         return new PageInfo<>(studentMapper.selectByExample(studentExample));
+    }
+
+
+    /**
+     *  查找当前玩家的游戏记录
+     * @param commonQo 通用分页查询类
+     * @param httpSession 当前会话
+     * @return  pageInfo
+     */
+    @RequestMapping("/myhistory")
+    public PageInfo<History> myHistory(CommonQo commonQo, HttpSession httpSession) {
+        PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageNum(),"htime");
+        HistoryExample historyExample = new HistoryExample();
+        Student studentSession = (Student) httpSession.getAttribute("student");
+        historyExample.or().andPhoneEqualTo(studentSession.getPhone());
+        return new PageInfo<>(historyMapper.selectByExample(historyExample));
     }
 
 
