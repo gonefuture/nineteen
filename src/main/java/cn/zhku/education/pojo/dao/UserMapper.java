@@ -1,8 +1,8 @@
-package cn.zhku.education.po.dao;
+package cn.zhku.education.pojo.dao;
 
-import cn.zhku.education.po.entity.User;
-import cn.zhku.education.po.entity.UserExample;
-import cn.zhku.education.po.entity.UserKey;
+import cn.zhku.education.pojo.entity.User;
+import cn.zhku.education.pojo.entity.UserExample;
+import cn.zhku.education.pojo.entity.UserKey;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

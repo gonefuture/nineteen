@@ -1,4 +1,4 @@
-package cn.zhku.education.po.entity;
+package cn.zhku.education.pojo.entity;
 
 import java.util.ArrayList;
 import java.util.List;

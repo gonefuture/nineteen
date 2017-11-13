@@ -1,11 +1,13 @@
 package cn.zhku.education.security;
 
-import cn.zhku.education.dao.SecurityDao;
-import cn.zhku.education.po.dao.PermissionMapper;
-import cn.zhku.education.po.dao.PermissionRoleMapper;
-import cn.zhku.education.po.dao.RoleUserMapper;
-import cn.zhku.education.po.dao.UserMapper;
-import cn.zhku.education.po.entity.*;
+import cn.zhku.education.pojo.dao.PermissionMapper;
+import cn.zhku.education.pojo.dao.PermissionRoleMapper;
+import cn.zhku.education.pojo.dao.RoleUserMapper;
+import cn.zhku.education.pojo.dao.UserMapper;
+import cn.zhku.education.pojo.entity.Permission;
+import cn.zhku.education.pojo.entity.User;
+import cn.zhku.education.security.dao.SecurityDao;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

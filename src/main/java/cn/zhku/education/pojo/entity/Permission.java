@@ -1,6 +1,8 @@
-package cn.zhku.education.po.entity;
+package cn.zhku.education.pojo.entity;
 
-public class Permission {
+import java.io.Serializable;
+
+public class Permission implements Serializable {
     private Integer id;
 
     private String name;
@@ -10,6 +12,8 @@ public class Permission {
     private String url;
 
     private Integer pid;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getId() {
         return id;
@@ -51,15 +55,19 @@ public class Permission {
         this.pid = pid;
     }
 
-
     @Override
     public String toString() {
-        return "Permission{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", url='" + url + '\'' +
-                ", pid=" + pid +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", name=").append(name);
+        sb.append(", description=").append(description);
+        sb.append(", url=").append(url);
+        sb.append(", pid=").append(pid);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

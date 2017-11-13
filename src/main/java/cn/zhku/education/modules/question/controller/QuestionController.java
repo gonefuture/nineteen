@@ -1,6 +1,7 @@
-package cn.zhku.education.modules.question;
+package cn.zhku.education.modules.question.controller;
 
 import cn.zhku.education.model.CommonQo;
+import cn.zhku.education.modules.question.dao.QuestionDao;
 import cn.zhku.education.pojo.dao.QuestionMapper;
 import cn.zhku.education.pojo.entity.Question;
 import com.github.pagehelper.PageHelper;
@@ -24,10 +25,14 @@ public class QuestionController {
     @Autowired
     QuestionMapper questionMapper;
 
+    @Autowired
+    QuestionDao questionDao;
+
     @RequestMapping("list")
-    public PageInfo<Question> list(CommonQo commonQo) {
-        PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageSize()," id desc");
-        List<Question> questionList =questionMapper.selectByExample(null);
-        return new PageInfo<Question>(questionList);
+    public List<Question> list(Integer number) {
+        if (number == null)
+            number = 5;
+        List<Question> questionList = questionDao.randomQuestion(number);
+        return questionList;
     }
 }

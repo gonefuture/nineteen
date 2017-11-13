@@ -1,7 +1,7 @@
 package cn.zhku.education.modules.role;
 
-import cn.zhku.education.po.dao.RoleMapper;
-import cn.zhku.education.po.entity.Role;
+import cn.zhku.education.pojo.dao.RoleMapper;
+import cn.zhku.education.pojo.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

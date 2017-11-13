@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.zhku.education.po.dao.PermissionRoleMapper" >
-  <resultMap id="BaseResultMap" type="cn.zhku.education.po.entity.PermissionRole" >
+<mapper namespace="cn.zhku.education.pojo.dao.PermissionRoleMapper" >
+  <resultMap id="BaseResultMap" type="cn.zhku.education.pojo.entity.PermissionRole" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="role_id" property="roleId" jdbcType="INTEGER" />
     <result column="permission_id" property="permissionId" jdbcType="INTEGER" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List" >
     id, role_id, permission_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.zhku.education.po.entity.PermissionRoleExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.zhku.education.pojo.entity.PermissionRoleExample" >
     select
     <if test="distinct" >
       distinct
@@ -91,19 +91,19 @@
     delete from permission_role
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.zhku.education.po.entity.PermissionRoleExample" >
+  <delete id="deleteByExample" parameterType="cn.zhku.education.pojo.entity.PermissionRoleExample" >
     delete from permission_role
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.zhku.education.po.entity.PermissionRole" >
+  <insert id="insert" parameterType="cn.zhku.education.pojo.entity.PermissionRole" >
     insert into permission_role (id, role_id, permission_id
       )
     values (#{id,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{permissionId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.zhku.education.po.entity.PermissionRole" >
+  <insert id="insertSelective" parameterType="cn.zhku.education.pojo.entity.PermissionRole" >
     insert into permission_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -128,7 +128,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.zhku.education.po.entity.PermissionRoleExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="cn.zhku.education.pojo.entity.PermissionRoleExample" resultType="java.lang.Integer" >
     select count(*) from permission_role
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -160,7 +160,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.zhku.education.po.entity.PermissionRole" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.zhku.education.pojo.entity.PermissionRole" >
     update permission_role
     <set >
       <if test="roleId != null" >
@@ -172,7 +172,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.zhku.education.po.entity.PermissionRole" >
+  <update id="updateByPrimaryKey" parameterType="cn.zhku.education.pojo.entity.PermissionRole" >
     update permission_role
     set role_id = #{roleId,jdbcType=INTEGER},
       permission_id = #{permissionId,jdbcType=INTEGER}

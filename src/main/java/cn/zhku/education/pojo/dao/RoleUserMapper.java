@@ -1,7 +1,7 @@
-package cn.zhku.education.po.dao;
+package cn.zhku.education.pojo.dao;
 
-import cn.zhku.education.po.entity.RoleUser;
-import cn.zhku.education.po.entity.RoleUserExample;
+import cn.zhku.education.pojo.entity.RoleUser;
+import cn.zhku.education.pojo.entity.RoleUserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

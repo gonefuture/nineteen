@@ -1,7 +1,7 @@
-package cn.zhku.education.po.dao;
+package cn.zhku.education.pojo.dao;
 
-import cn.zhku.education.po.entity.Permission;
-import cn.zhku.education.po.entity.PermissionExample;
+import cn.zhku.education.pojo.entity.Permission;
+import cn.zhku.education.pojo.entity.PermissionExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

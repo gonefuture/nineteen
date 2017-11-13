@@ -1,8 +1,8 @@
 package cn.zhku.education.security;
 
-import cn.zhku.education.po.dao.PermissionMapper;
-import cn.zhku.education.po.entity.Permission;
-import cn.zhku.education.po.entity.PermissionExample;
+
+import cn.zhku.education.pojo.dao.PermissionMapper;
+import cn.zhku.education.pojo.entity.Permission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;

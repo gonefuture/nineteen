@@ -1,8 +1,8 @@
-package cn.zhku.education.dao;
+package cn.zhku.education.security.dao;
 
-import cn.zhku.education.po.dao.UserMapper;
-import cn.zhku.education.po.entity.Permission;
-import cn.zhku.education.po.entity.User;
+
+import cn.zhku.education.pojo.entity.Permission;
+import cn.zhku.education.pojo.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 

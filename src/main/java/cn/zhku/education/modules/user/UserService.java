@@ -1,7 +1,8 @@
 package cn.zhku.education.modules.user;
 
-import cn.zhku.education.po.dao.UserMapper;
-import cn.zhku.education.po.entity.User;
+
+import cn.zhku.education.pojo.dao.UserMapper;
+import cn.zhku.education.pojo.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
