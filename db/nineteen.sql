@@ -1,6 +1,6 @@
 /*
 SQLyog v10.2 
-MySQL - 5.7.16 : Database - nineteen
+MySQL - 5.5.28 : Database - nineteen
 *********************************************************************
 */
 
@@ -31,6 +31,25 @@ CREATE TABLE `dict` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `dict` */
+
+/*Table structure for table `history` */
+
+DROP TABLE IF EXISTS `history`;
+
+CREATE TABLE `history` (
+  `hid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `phone` varchar(255) DEFAULT NULL,
+  `first_score` int(11) DEFAULT NULL,
+  `second_score` int(11) DEFAULT NULL,
+  `htime` datetime DEFAULT NULL,
+  `score` int(11) DEFAULT NULL,
+  `hrate` int(11) DEFAULT NULL,
+  PRIMARY KEY (`hid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `history` */
+
+insert  into `history`(`hid`,`phone`,`first_score`,`second_score`,`htime`,`score`,`hrate`) values (1,'1235456',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `permission` */
 
@@ -152,12 +171,13 @@ CREATE TABLE `student` (
   `playtimes` int(11) DEFAULT NULL,
   `score` int(11) DEFAULT NULL,
   `last_rank` int(11) DEFAULT NULL,
+  `enter_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`phone`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `student` */
 
-insert  into `student`(`phone`,`college_class`,`name`,`playtimes`,`score`,`last_rank`) values ('12634343',NULL,'江伟龙',NULL,101,NULL),('13533805040',NULL,'钱伟健',NULL,10,NULL),('4524546345242',NULL,'jjjaf',NULL,10,NULL);
+insert  into `student`(`phone`,`college_class`,`name`,`playtimes`,`score`,`last_rank`,`enter_time`) values ('1235456',NULL,'������',NULL,NULL,NULL,NULL),('12634343',NULL,'江伟龙',NULL,101,NULL,NULL),('13533805040',NULL,'钱伟健',NULL,10,NULL,NULL),('213',NULL,NULL,NULL,NULL,NULL,NULL),('4524546345242',NULL,'jjjaf',NULL,10,NULL,NULL);
 
 /*Table structure for table `user` */
 
