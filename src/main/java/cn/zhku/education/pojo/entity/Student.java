@@ -13,7 +13,7 @@ public class Student implements Serializable {
 
     private Integer score;
 
-    private String collegeclass;
+    private Integer lastRank;
 
     private static final long serialVersionUID = 1L;
 
@@ -57,12 +57,12 @@ public class Student implements Serializable {
         this.score = score;
     }
 
-    public String getCollegeclass() {
-        return collegeclass;
+    public Integer getLastRank() {
+        return lastRank;
     }
 
-    public void setCollegeclass(String collegeclass) {
-        this.collegeclass = collegeclass == null ? null : collegeclass.trim();
+    public void setLastRank(Integer lastRank) {
+        this.lastRank = lastRank;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class Student implements Serializable {
         sb.append(", name=").append(name);
         sb.append(", playtimes=").append(playtimes);
         sb.append(", score=").append(score);
-        sb.append(", collegeclass=").append(collegeclass);
+        sb.append(", lastRank=").append(lastRank);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

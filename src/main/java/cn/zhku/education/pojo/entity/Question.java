@@ -1,11 +1,12 @@
 package cn.zhku.education.pojo.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Question implements Serializable {
     private Integer id;
 
-    private String qtype;
+    private Integer qtype;
 
     private String qcontent;
 
@@ -23,7 +24,7 @@ public class Question implements Serializable {
 
     private Integer qvalue;
 
-    private String entertime;
+    private Date entertime;
 
     private static final long serialVersionUID = 1L;
 
@@ -35,12 +36,12 @@ public class Question implements Serializable {
         this.id = id;
     }
 
-    public String getQtype() {
+    public Integer getQtype() {
         return qtype;
     }
 
-    public void setQtype(String qtype) {
-        this.qtype = qtype == null ? null : qtype.trim();
+    public void setQtype(Integer qtype) {
+        this.qtype = qtype;
     }
 
     public String getQcontent() {
@@ -107,12 +108,12 @@ public class Question implements Serializable {
         this.qvalue = qvalue;
     }
 
-    public String getEntertime() {
+    public Date getEntertime() {
         return entertime;
     }
 
-    public void setEntertime(String entertime) {
-        this.entertime = entertime == null ? null : entertime.trim();
+    public void setEntertime(Date entertime) {
+        this.entertime = entertime;
     }
 
     @Override

@@ -7,7 +7,7 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="playtimes" property="playtimes" jdbcType="INTEGER" />
     <result column="score" property="score" jdbcType="INTEGER" />
-    <result column="collegeClass" property="collegeclass" jdbcType="VARCHAR" />
+    <result column="last_rank" property="lastRank" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    phone, college_class, name, playtimes, score, collegeClass
+    phone, college_class, name, playtimes, score, last_rank
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.zhku.education.pojo.entity.StudentExample" >
     select
@@ -102,10 +102,10 @@
   </delete>
   <insert id="insert" parameterType="cn.zhku.education.pojo.entity.Student" >
     insert into student (phone, college_class, name, 
-      playtimes, score, collegeClass
+      playtimes, score, last_rank
       )
     values (#{phone,jdbcType=VARCHAR}, #{collegeClass,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{playtimes,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{collegeclass,jdbcType=VARCHAR}
+      #{playtimes,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{lastRank,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.zhku.education.pojo.entity.Student" >
@@ -126,8 +126,8 @@
       <if test="score != null" >
         score,
       </if>
-      <if test="collegeclass != null" >
-        collegeClass,
+      <if test="lastRank != null" >
+        last_rank,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -146,8 +146,8 @@
       <if test="score != null" >
         #{score,jdbcType=INTEGER},
       </if>
-      <if test="collegeclass != null" >
-        #{collegeclass,jdbcType=VARCHAR},
+      <if test="lastRank != null" >
+        #{lastRank,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -175,8 +175,8 @@
       <if test="record.score != null" >
         score = #{record.score,jdbcType=INTEGER},
       </if>
-      <if test="record.collegeclass != null" >
-        collegeClass = #{record.collegeclass,jdbcType=VARCHAR},
+      <if test="record.lastRank != null" >
+        last_rank = #{record.lastRank,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -190,7 +190,7 @@
       name = #{record.name,jdbcType=VARCHAR},
       playtimes = #{record.playtimes,jdbcType=INTEGER},
       score = #{record.score,jdbcType=INTEGER},
-      collegeClass = #{record.collegeclass,jdbcType=VARCHAR}
+      last_rank = #{record.lastRank,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -210,8 +210,8 @@
       <if test="score != null" >
         score = #{score,jdbcType=INTEGER},
       </if>
-      <if test="collegeclass != null" >
-        collegeClass = #{collegeclass,jdbcType=VARCHAR},
+      <if test="lastRank != null" >
+        last_rank = #{lastRank,jdbcType=INTEGER},
       </if>
     </set>
     where phone = #{phone,jdbcType=VARCHAR}
@@ -222,7 +222,7 @@
       name = #{name,jdbcType=VARCHAR},
       playtimes = #{playtimes,jdbcType=INTEGER},
       score = #{score,jdbcType=INTEGER},
-      collegeClass = #{collegeclass,jdbcType=VARCHAR}
+      last_rank = #{lastRank,jdbcType=INTEGER}
     where phone = #{phone,jdbcType=VARCHAR}
   </update>
 </mapper>

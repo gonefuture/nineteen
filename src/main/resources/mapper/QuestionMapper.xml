@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.zhku.education.pojo.dao.QuestionMapper" >
   <resultMap id="BaseResultMap" type="cn.zhku.education.pojo.entity.Question" >
-    <result column="id" property="id" jdbcType="INTEGER" />
-    <result column="qtype" property="qtype" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="qtype" property="qtype" jdbcType="INTEGER" />
     <result column="qcontent" property="qcontent" jdbcType="VARCHAR" />
     <result column="a" property="a" jdbcType="VARCHAR" />
     <result column="b" property="b" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
     <result column="answer" property="answer" jdbcType="VARCHAR" />
     <result column="qexplain" property="qexplain" jdbcType="VARCHAR" />
     <result column="qvalue" property="qvalue" jdbcType="INTEGER" />
-    <result column="entertime" property="entertime" jdbcType="VARCHAR" />
+    <result column="entertime" property="entertime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -89,6 +89,16 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from question
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from question
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByExample" parameterType="cn.zhku.education.pojo.entity.QuestionExample" >
     delete from question
     <if test="_parameter != null" >
@@ -100,10 +110,10 @@
       a, b, c, d, 
       answer, qexplain, qvalue, 
       entertime)
-    values (#{id,jdbcType=INTEGER}, #{qtype,jdbcType=VARCHAR}, #{qcontent,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{qtype,jdbcType=INTEGER}, #{qcontent,jdbcType=VARCHAR}, 
       #{a,jdbcType=VARCHAR}, #{b,jdbcType=VARCHAR}, #{c,jdbcType=VARCHAR}, #{d,jdbcType=VARCHAR}, 
       #{answer,jdbcType=VARCHAR}, #{qexplain,jdbcType=VARCHAR}, #{qvalue,jdbcType=INTEGER}, 
-      #{entertime,jdbcType=VARCHAR})
+      #{entertime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="cn.zhku.education.pojo.entity.Question" >
     insert into question
@@ -147,7 +157,7 @@
         #{id,jdbcType=INTEGER},
       </if>
       <if test="qtype != null" >
-        #{qtype,jdbcType=VARCHAR},
+        #{qtype,jdbcType=INTEGER},
       </if>
       <if test="qcontent != null" >
         #{qcontent,jdbcType=VARCHAR},
@@ -174,7 +184,7 @@
         #{qvalue,jdbcType=INTEGER},
       </if>
       <if test="entertime != null" >
-        #{entertime,jdbcType=VARCHAR},
+        #{entertime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -191,7 +201,7 @@
         id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.qtype != null" >
-        qtype = #{record.qtype,jdbcType=VARCHAR},
+        qtype = #{record.qtype,jdbcType=INTEGER},
       </if>
       <if test="record.qcontent != null" >
         qcontent = #{record.qcontent,jdbcType=VARCHAR},
@@ -218,7 +228,7 @@
         qvalue = #{record.qvalue,jdbcType=INTEGER},
       </if>
       <if test="record.entertime != null" >
-        entertime = #{record.entertime,jdbcType=VARCHAR},
+        entertime = #{record.entertime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -228,7 +238,7 @@
   <update id="updateByExample" parameterType="map" >
     update question
     set id = #{record.id,jdbcType=INTEGER},
-      qtype = #{record.qtype,jdbcType=VARCHAR},
+      qtype = #{record.qtype,jdbcType=INTEGER},
       qcontent = #{record.qcontent,jdbcType=VARCHAR},
       a = #{record.a,jdbcType=VARCHAR},
       b = #{record.b,jdbcType=VARCHAR},
@@ -237,9 +247,59 @@
       answer = #{record.answer,jdbcType=VARCHAR},
       qexplain = #{record.qexplain,jdbcType=VARCHAR},
       qvalue = #{record.qvalue,jdbcType=INTEGER},
-      entertime = #{record.entertime,jdbcType=VARCHAR}
+      entertime = #{record.entertime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.zhku.education.pojo.entity.Question" >
+    update question
+    <set >
+      <if test="qtype != null" >
+        qtype = #{qtype,jdbcType=INTEGER},
+      </if>
+      <if test="qcontent != null" >
+        qcontent = #{qcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="a != null" >
+        a = #{a,jdbcType=VARCHAR},
+      </if>
+      <if test="b != null" >
+        b = #{b,jdbcType=VARCHAR},
+      </if>
+      <if test="c != null" >
+        c = #{c,jdbcType=VARCHAR},
+      </if>
+      <if test="d != null" >
+        d = #{d,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="qexplain != null" >
+        qexplain = #{qexplain,jdbcType=VARCHAR},
+      </if>
+      <if test="qvalue != null" >
+        qvalue = #{qvalue,jdbcType=INTEGER},
+      </if>
+      <if test="entertime != null" >
+        entertime = #{entertime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.zhku.education.pojo.entity.Question" >
+    update question
+    set qtype = #{qtype,jdbcType=INTEGER},
+      qcontent = #{qcontent,jdbcType=VARCHAR},
+      a = #{a,jdbcType=VARCHAR},
+      b = #{b,jdbcType=VARCHAR},
+      c = #{c,jdbcType=VARCHAR},
+      d = #{d,jdbcType=VARCHAR},
+      answer = #{answer,jdbcType=VARCHAR},
+      qexplain = #{qexplain,jdbcType=VARCHAR},
+      qvalue = #{qvalue,jdbcType=INTEGER},
+      entertime = #{entertime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

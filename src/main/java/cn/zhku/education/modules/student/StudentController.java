@@ -8,6 +8,7 @@ import cn.zhku.education.pojo.entity.StudentExample;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -65,7 +66,11 @@ public class StudentController {
             return new Message("2","记录成绩失败");
     }
 
-
+    /**
+     *  显示排名，默认是显示前十的排名
+     * @param commonQo  通用查询类
+     * @return
+     */
     @RequestMapping("/student/rank")
     public PageInfo<Student> RankList(CommonQo commonQo) {
         PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageNum(),"score");
@@ -73,6 +78,11 @@ public class StudentController {
     }
 
 
+    /**
+     *  展示所有学生
+     * @param commonQo 通用查询类
+     * @return PageInfo分页
+     */
     @RequestMapping("/student/list")
     public PageInfo<Student> studentList(CommonQo commonQo) {
         PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageNum());
@@ -80,5 +90,15 @@ public class StudentController {
         return new PageInfo<>(studentMapper.selectByExample(studentExample));
     }
 
+
+    /**
+     *  查询学生信息
+     * @param phone 手机号
+     * @return  Student
+     */
+    @RequestMapping("student/{phone}")
+    public Student myInfo(@PathVariable String phone){
+        return studentMapper.selectByPrimaryKey(phone);
+    }
 
 }

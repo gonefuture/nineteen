@@ -434,73 +434,63 @@ public class StudentExample {
             return (Criteria) this;
         }
 
-        public Criteria andCollegeclassIsNull() {
-            addCriterion("collegeClass is null");
+        public Criteria andLastRankIsNull() {
+            addCriterion("last_rank is null");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeclassIsNotNull() {
-            addCriterion("collegeClass is not null");
+        public Criteria andLastRankIsNotNull() {
+            addCriterion("last_rank is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeclassEqualTo(String value) {
-            addCriterion("collegeClass =", value, "collegeclass");
+        public Criteria andLastRankEqualTo(Integer value) {
+            addCriterion("last_rank =", value, "lastRank");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeclassNotEqualTo(String value) {
-            addCriterion("collegeClass <>", value, "collegeclass");
+        public Criteria andLastRankNotEqualTo(Integer value) {
+            addCriterion("last_rank <>", value, "lastRank");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeclassGreaterThan(String value) {
-            addCriterion("collegeClass >", value, "collegeclass");
+        public Criteria andLastRankGreaterThan(Integer value) {
+            addCriterion("last_rank >", value, "lastRank");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeclassGreaterThanOrEqualTo(String value) {
-            addCriterion("collegeClass >=", value, "collegeclass");
+        public Criteria andLastRankGreaterThanOrEqualTo(Integer value) {
+            addCriterion("last_rank >=", value, "lastRank");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeclassLessThan(String value) {
-            addCriterion("collegeClass <", value, "collegeclass");
+        public Criteria andLastRankLessThan(Integer value) {
+            addCriterion("last_rank <", value, "lastRank");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeclassLessThanOrEqualTo(String value) {
-            addCriterion("collegeClass <=", value, "collegeclass");
+        public Criteria andLastRankLessThanOrEqualTo(Integer value) {
+            addCriterion("last_rank <=", value, "lastRank");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeclassLike(String value) {
-            addCriterion("collegeClass like", value, "collegeclass");
+        public Criteria andLastRankIn(List<Integer> values) {
+            addCriterion("last_rank in", values, "lastRank");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeclassNotLike(String value) {
-            addCriterion("collegeClass not like", value, "collegeclass");
+        public Criteria andLastRankNotIn(List<Integer> values) {
+            addCriterion("last_rank not in", values, "lastRank");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeclassIn(List<String> values) {
-            addCriterion("collegeClass in", values, "collegeclass");
+        public Criteria andLastRankBetween(Integer value1, Integer value2) {
+            addCriterion("last_rank between", value1, value2, "lastRank");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeclassNotIn(List<String> values) {
-            addCriterion("collegeClass not in", values, "collegeclass");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollegeclassBetween(String value1, String value2) {
-            addCriterion("collegeClass between", value1, value2, "collegeclass");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollegeclassNotBetween(String value1, String value2) {
-            addCriterion("collegeClass not between", value1, value2, "collegeclass");
+        public Criteria andLastRankNotBetween(Integer value1, Integer value2) {
+            addCriterion("last_rank not between", value1, value2, "lastRank");
             return (Criteria) this;
         }
     }

@@ -1,6 +1,7 @@
 package cn.zhku.education.pojo.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class QuestionExample {
@@ -174,62 +175,52 @@ public class QuestionExample {
             return (Criteria) this;
         }
 
-        public Criteria andQtypeEqualTo(String value) {
+        public Criteria andQtypeEqualTo(Integer value) {
             addCriterion("qtype =", value, "qtype");
             return (Criteria) this;
         }
 
-        public Criteria andQtypeNotEqualTo(String value) {
+        public Criteria andQtypeNotEqualTo(Integer value) {
             addCriterion("qtype <>", value, "qtype");
             return (Criteria) this;
         }
 
-        public Criteria andQtypeGreaterThan(String value) {
+        public Criteria andQtypeGreaterThan(Integer value) {
             addCriterion("qtype >", value, "qtype");
             return (Criteria) this;
         }
 
-        public Criteria andQtypeGreaterThanOrEqualTo(String value) {
+        public Criteria andQtypeGreaterThanOrEqualTo(Integer value) {
             addCriterion("qtype >=", value, "qtype");
             return (Criteria) this;
         }
 
-        public Criteria andQtypeLessThan(String value) {
+        public Criteria andQtypeLessThan(Integer value) {
             addCriterion("qtype <", value, "qtype");
             return (Criteria) this;
         }
 
-        public Criteria andQtypeLessThanOrEqualTo(String value) {
+        public Criteria andQtypeLessThanOrEqualTo(Integer value) {
             addCriterion("qtype <=", value, "qtype");
             return (Criteria) this;
         }
 
-        public Criteria andQtypeLike(String value) {
-            addCriterion("qtype like", value, "qtype");
-            return (Criteria) this;
-        }
-
-        public Criteria andQtypeNotLike(String value) {
-            addCriterion("qtype not like", value, "qtype");
-            return (Criteria) this;
-        }
-
-        public Criteria andQtypeIn(List<String> values) {
+        public Criteria andQtypeIn(List<Integer> values) {
             addCriterion("qtype in", values, "qtype");
             return (Criteria) this;
         }
 
-        public Criteria andQtypeNotIn(List<String> values) {
+        public Criteria andQtypeNotIn(List<Integer> values) {
             addCriterion("qtype not in", values, "qtype");
             return (Criteria) this;
         }
 
-        public Criteria andQtypeBetween(String value1, String value2) {
+        public Criteria andQtypeBetween(Integer value1, Integer value2) {
             addCriterion("qtype between", value1, value2, "qtype");
             return (Criteria) this;
         }
 
-        public Criteria andQtypeNotBetween(String value1, String value2) {
+        public Criteria andQtypeNotBetween(Integer value1, Integer value2) {
             addCriterion("qtype not between", value1, value2, "qtype");
             return (Criteria) this;
         }
@@ -794,62 +785,52 @@ public class QuestionExample {
             return (Criteria) this;
         }
 
-        public Criteria andEntertimeEqualTo(String value) {
+        public Criteria andEntertimeEqualTo(Date value) {
             addCriterion("entertime =", value, "entertime");
             return (Criteria) this;
         }
 
-        public Criteria andEntertimeNotEqualTo(String value) {
+        public Criteria andEntertimeNotEqualTo(Date value) {
             addCriterion("entertime <>", value, "entertime");
             return (Criteria) this;
         }
 
-        public Criteria andEntertimeGreaterThan(String value) {
+        public Criteria andEntertimeGreaterThan(Date value) {
             addCriterion("entertime >", value, "entertime");
             return (Criteria) this;
         }
 
-        public Criteria andEntertimeGreaterThanOrEqualTo(String value) {
+        public Criteria andEntertimeGreaterThanOrEqualTo(Date value) {
             addCriterion("entertime >=", value, "entertime");
             return (Criteria) this;
         }
 
-        public Criteria andEntertimeLessThan(String value) {
+        public Criteria andEntertimeLessThan(Date value) {
             addCriterion("entertime <", value, "entertime");
             return (Criteria) this;
         }
 
-        public Criteria andEntertimeLessThanOrEqualTo(String value) {
+        public Criteria andEntertimeLessThanOrEqualTo(Date value) {
             addCriterion("entertime <=", value, "entertime");
             return (Criteria) this;
         }
 
-        public Criteria andEntertimeLike(String value) {
-            addCriterion("entertime like", value, "entertime");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntertimeNotLike(String value) {
-            addCriterion("entertime not like", value, "entertime");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntertimeIn(List<String> values) {
+        public Criteria andEntertimeIn(List<Date> values) {
             addCriterion("entertime in", values, "entertime");
             return (Criteria) this;
         }
 
-        public Criteria andEntertimeNotIn(List<String> values) {
+        public Criteria andEntertimeNotIn(List<Date> values) {
             addCriterion("entertime not in", values, "entertime");
             return (Criteria) this;
         }
 
-        public Criteria andEntertimeBetween(String value1, String value2) {
+        public Criteria andEntertimeBetween(Date value1, Date value2) {
             addCriterion("entertime between", value1, value2, "entertime");
             return (Criteria) this;
         }
 
-        public Criteria andEntertimeNotBetween(String value1, String value2) {
+        public Criteria andEntertimeNotBetween(Date value1, Date value2) {
             addCriterion("entertime not between", value1, value2, "entertime");
             return (Criteria) this;
         }
