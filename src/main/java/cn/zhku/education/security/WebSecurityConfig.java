@@ -45,7 +45,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
 
 
-
     @Bean
     UserDetailsService customUserService(){ //注册UserDetailsService 的bean
         return new CustomUserService();
@@ -67,13 +66,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/images/**", "/checkcode", "/scripts/**", "/styles/**","/css/**").permitAll()
-                .and()
-                .authorizeRequests()
+        http.authorizeRequests().anyRequest().permitAll()
+                //.antMatchers("/images/**", "/checkcode", "/scripts/**", "/styles/**","/css/**").permitAll()
+               // .and()
+               // .authorizeRequests()
                // .anyRequest().authenticated() //任何请求,登录后可以访问
-                .antMatchers("/admin/**").authenticated()   //  我添加的
-                .anyRequest().permitAll()   //  我添加的
+                //.antMatchers("/admin/**").authenticated()   //  我添加的
                 .and()
                 .formLogin()
                 .loginPage("/login")

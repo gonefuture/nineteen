@@ -1,8 +1,12 @@
 package cn.zhku.education.modules.student;
 
+import cn.zhku.education.model.CommonQo;
 import cn.zhku.education.model.Message;
 import cn.zhku.education.pojo.dao.StudentMapper;
 import cn.zhku.education.pojo.entity.Student;
+import cn.zhku.education.pojo.entity.StudentExample;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,15 +19,18 @@ import javax.servlet.http.HttpSession;
  * 说明：
  */
 @RestController
-@RequestMapping("student")
 public class StudentController {
     @Autowired
     StudentMapper studentMapper;
 
 
-
-    @RequestMapping("begin")
-
+    /**
+     *  收集学生信息，开始游戏
+     * @param student   学生信息
+     * @param httpSession   当前session
+     * @return  Message
+     */
+    @RequestMapping("/student/begin")
     public Message begin(Student student, HttpSession httpSession) {
         if (studentMapper.insert(student) == 1){
             httpSession.setAttribute("student",student);
@@ -34,7 +41,16 @@ public class StudentController {
     }
 
 
+    /**
+     *  获取最后一关的数据
+     * @param score 分数
+     * @param httpSession   当前session
+     * @return  Message
+     */
+    @RequestMapping("/student/lastPass")
     public Message lastPass(Integer score,HttpSession httpSession) {
+        if (score == null)
+            score = 0 ;
         Student studentSession = (Student) httpSession.getAttribute("student");
         Student student = new Student();
         student.setScore(score);
@@ -49,6 +65,20 @@ public class StudentController {
             return new Message("2","记录成绩失败");
     }
 
+
+    @RequestMapping("/student/rank")
+    public PageInfo<Student> RankList(CommonQo commonQo) {
+        PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageNum(),"score");
+        return new PageInfo<>(studentMapper.selectByExample(null));
+    }
+
+
+    @RequestMapping("/student/list")
+    public PageInfo<Student> studentList(CommonQo commonQo) {
+        PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageNum());
+        StudentExample studentExample = new StudentExample();
+        return new PageInfo<>(studentMapper.selectByExample(studentExample));
+    }
 
 
 }
