@@ -1,6 +1,6 @@
 /*
 SQLyog v10.2 
-MySQL - 5.5.28 : Database - nineteen
+MySQL - 5.7.16 : Database - nineteen
 *********************************************************************
 */
 
@@ -41,7 +41,7 @@ CREATE TABLE `history` (
   `phone` varchar(255) DEFAULT NULL,
   `first_score` int(11) DEFAULT NULL,
   `second_score` int(11) DEFAULT NULL,
-  `htime` datetime DEFAULT NULL,
+  `htime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `score` int(11) DEFAULT NULL,
   `hrate` int(11) DEFAULT NULL,
   PRIMARY KEY (`hid`)
@@ -49,7 +49,7 @@ CREATE TABLE `history` (
 
 /*Data for the table `history` */
 
-insert  into `history`(`hid`,`phone`,`first_score`,`second_score`,`htime`,`score`,`hrate`) values ('1','1235456',NULL,NULL,NULL,NULL,NULL),('2','1112454',NULL,NULL,NULL,NULL,NULL),('32B93983C3284C2F9572849B1515F76C','411010',NULL,10,NULL,20,NULL),('5018B7ADCF4F4A84B801F96921147516','1213545',10,NULL,NULL,NULL,NULL);
+insert  into `history`(`hid`,`phone`,`first_score`,`second_score`,`htime`,`score`,`hrate`) values ('043B2A850B4E471C88BCF8508DD09463','13609748834',NULL,NULL,'2017-11-14 17:52:55',NULL,NULL),('1','1235456',NULL,NULL,'2017-11-14 17:52:55',NULL,NULL),('2','1112454',NULL,NULL,'2017-11-14 17:52:55',NULL,NULL),('32B93983C3284C2F9572849B1515F76C','411010',NULL,10,'2017-11-14 17:52:55',20,NULL),('4C381DA666924444A26D636E8DA9A9A9','13533805040',NULL,NULL,'2017-11-14 17:52:55',NULL,NULL),('5018B7ADCF4F4A84B801F96921147516','1213545',10,NULL,'2017-11-14 17:52:55',NULL,NULL),('5696B1142BD7437E846448018E7DEAC7','13265969832',NULL,NULL,'2017-11-14 17:52:55',NULL,NULL),('5C8E4A20D00844AF91D44C59987DC3E7','13609736653',NULL,NULL,'2017-11-14 17:52:55',NULL,NULL);
 
 /*Table structure for table `permission` */
 
@@ -171,13 +171,13 @@ CREATE TABLE `student` (
   `playtimes` int(11) DEFAULT NULL,
   `score` int(11) DEFAULT NULL,
   `last_rank` int(11) DEFAULT NULL,
-  `enter_time` timestamp NULL DEFAULT NULL,
+  `enter_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`phone`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `student` */
 
-insert  into `student`(`phone`,`college_class`,`name`,`playtimes`,`score`,`last_rank`,`enter_time`) values ('1112454',NULL,NULL,NULL,NULL,NULL,NULL),('1213545',NULL,NULL,NULL,NULL,NULL,NULL),('1235456',NULL,'������',NULL,NULL,NULL,NULL),('12634343',NULL,'江伟龙',NULL,101,NULL,NULL),('13533805040',NULL,'钱伟健',NULL,10,NULL,NULL),('213',NULL,NULL,NULL,NULL,NULL,NULL),('411010',NULL,NULL,NULL,20,NULL,NULL),('4524546345242',NULL,'jjjaf',NULL,10,NULL,NULL);
+insert  into `student`(`phone`,`college_class`,`name`,`playtimes`,`score`,`last_rank`,`enter_time`) values ('12634343',NULL,'江伟龙',NULL,101,NULL,'2017-11-14 17:51:34'),('13265969832','计算机152','李龙杰',NULL,0,NULL,'2017-11-14 17:51:34'),('13533805040',NULL,'钱伟健',NULL,10,NULL,'2017-11-14 17:51:34'),('13609736653','计算机151','陈文龙',NULL,0,NULL,'2017-11-14 17:52:13'),('13609748834','计算机152','陈盟',NULL,0,NULL,'2017-11-14 17:51:34');
 
 /*Table structure for table `user` */
 
