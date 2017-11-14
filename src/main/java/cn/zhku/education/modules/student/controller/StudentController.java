@@ -177,7 +177,7 @@ public class StudentController {
      */
     @RequestMapping("/myhistory")
     public PageInfo<History> myHistory(CommonQo commonQo, HttpSession httpSession) {
-        PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageSize(),"htime");
+        PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageSize(),"htime desc");
         HistoryExample historyExample = new HistoryExample();
         Student studentSession = (Student) httpSession.getAttribute("student");
         historyExample.or().andPhoneEqualTo(studentSession.getPhone());
