@@ -38,6 +38,17 @@
                                   window.oCancelRequestAnimationFrame || 
                                   clearTimeout;
     /**
+     *0 标语
+     *
+     */
+    var tips = {
+        arr:['公平','民主','正义','和谐','爱国','政治','廉洁','友爱','公正','谦让'],
+        getTips:function () {
+            var index = Math.floor(Math.random()*this.arr.length) || 0;
+                return this.arr[index];
+        }
+    };
+    /**
      * 1、获取视窗大小
      */
     var win = {
@@ -58,6 +69,7 @@
         that.left = randomLeft.call(that);//随机横向位置
         that.speed = ~~(Math.random()*8)+2;//随机速度
         that.dom = null;
+        that.text = tips.getTips.call(tips);//获取随机文字
     }
 
     /**
@@ -73,6 +85,7 @@
         that.left = randomLeft.call(that);//随机横向位置
         that.speed = ~~(Math.random()*8)+2;//随机速度
         that.dom = null;
+        that.text = tips.getTips.call(tips);//获取随机文字
     }
 
     /**
@@ -83,7 +96,7 @@
             balloon = document.createElement('i');
             balloon.className = 'balloon';
             balloon.speed = that.speed;
-            balloon.style.cssText = 'width:'+that.width+'px;height:'+that.height+'px;top:'+that.top+'px;left:'+that.left+'px';
+            balloon.style.cssText = 'font-size:'+(that.width)*0.15+'px;width:'+that.width+'px;height:'+that.height+'px;top:'+that.top+'px;left:'+that.left+'px';
             balloon.boom = function(){
                 (function run(){
                     that.speed++;
@@ -101,6 +114,10 @@
                     
                 })();
             };
+        var oTip = document.createElement('span');
+            oTip.className = 'tips';
+            oTip.innerHTML = that.text;
+            balloon.appendChild(oTip);
             that.dom = balloon;
             that.dom.parent = $('#gamePanel')[0];
             that.dom.parent.appendChild(balloon);

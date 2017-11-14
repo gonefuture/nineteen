@@ -51,7 +51,7 @@ a{
     transform: rotate(45deg);
     box-shadow: -8px -8px 80px -8px #222 inset ;/*x y 羽化 半径 阴影颜色 内羽化*/
     cursor: pointer;
-   
+    color: gold;
 }
 .balloon::after{
     position:absolute;
@@ -62,6 +62,12 @@ a{
     /* border-right-color:#e1f502; */
     transform:rotate(45deg);
     border-radius: 50%;
+}
+.tips{
+    position:absolute;
+    top:20%;
+    left:10%;
+    transform: rotate(-45deg);
 }
 .white{
     color:#fff;
