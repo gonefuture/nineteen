@@ -1,7 +1,8 @@
-package cn.zhku.education.modules.student;
+package cn.zhku.education.modules.student.controller;
 
 import cn.zhku.education.model.CommonQo;
 import cn.zhku.education.model.Message;
+import cn.zhku.education.modules.student.dao.StudentDao;
 import cn.zhku.education.pojo.dao.HistoryMapper;
 import cn.zhku.education.pojo.dao.StudentMapper;
 import cn.zhku.education.pojo.entity.History;
@@ -31,6 +32,9 @@ public class StudentController {
 
     @Autowired
     HistoryMapper historyMapper;
+
+    @Autowired
+    StudentDao studentDao;
 
 
     /**
@@ -77,10 +81,17 @@ public class StudentController {
         History historySession = (History) httpSession.getAttribute("history");
         if ( studentSession == null || historySession == null)
             return new Message("2","请先完成前面的关卡");
+
+        //  更新记录表
         History history = getScore(studentSession,historySession);
         history.setFirstScore(score);
         history.setPhone(studentSession.getPhone());
         history.setHid(history.getHid());
+
+        //  更新学生记录
+        Student student = new Student();
+        student.setFirstScore(score);
+        studentMapper.updateByPrimaryKeySelective(student);
 
         if (historyMapper.updateByPrimaryKeySelective(history) == 1)
             return new Message("1","记录第一关成绩成功");
@@ -114,6 +125,7 @@ public class StudentController {
 
         if (historyMapper.updateByPrimaryKeySelective(history) == 1){
             Student student = new Student();
+            student.setSecondScore(score);
             student.setPhone(studentSession.getPhone());
             student.setScore(firstScore+score);
             studentMapper.updateByPrimaryKeySelective(student);
@@ -137,7 +149,7 @@ public class StudentController {
      */
     @RequestMapping("/student/rank")
     public PageInfo<Student> RankList(CommonQo commonQo) {
-        PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageNum(),"score");
+        PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageSize(),"score");
         return new PageInfo<>(studentMapper.selectByExample(null));
     }
 
@@ -149,7 +161,7 @@ public class StudentController {
      */
     @RequestMapping("/student/list")
     public PageInfo<Student> studentList(CommonQo commonQo) {
-        PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageNum());
+        PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageSize());
         StudentExample studentExample = new StudentExample();
         return new PageInfo<>(studentMapper.selectByExample(studentExample));
     }
@@ -181,4 +193,9 @@ public class StudentController {
         return studentMapper.selectByPrimaryKey(phone);
     }
 
+
+
+    public Integer myRank() {
+        return studentDao.myrank();
+    }
 }

@@ -375,6 +375,126 @@ public class StudentExample {
             return (Criteria) this;
         }
 
+        public Criteria andFirstScoreIsNull() {
+            addCriterion("first_score is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstScoreIsNotNull() {
+            addCriterion("first_score is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstScoreEqualTo(Integer value) {
+            addCriterion("first_score =", value, "firstScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstScoreNotEqualTo(Integer value) {
+            addCriterion("first_score <>", value, "firstScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstScoreGreaterThan(Integer value) {
+            addCriterion("first_score >", value, "firstScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstScoreGreaterThanOrEqualTo(Integer value) {
+            addCriterion("first_score >=", value, "firstScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstScoreLessThan(Integer value) {
+            addCriterion("first_score <", value, "firstScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstScoreLessThanOrEqualTo(Integer value) {
+            addCriterion("first_score <=", value, "firstScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstScoreIn(List<Integer> values) {
+            addCriterion("first_score in", values, "firstScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstScoreNotIn(List<Integer> values) {
+            addCriterion("first_score not in", values, "firstScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstScoreBetween(Integer value1, Integer value2) {
+            addCriterion("first_score between", value1, value2, "firstScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstScoreNotBetween(Integer value1, Integer value2) {
+            addCriterion("first_score not between", value1, value2, "firstScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSecondScoreIsNull() {
+            addCriterion("second_score is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSecondScoreIsNotNull() {
+            addCriterion("second_score is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSecondScoreEqualTo(Integer value) {
+            addCriterion("second_score =", value, "secondScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSecondScoreNotEqualTo(Integer value) {
+            addCriterion("second_score <>", value, "secondScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSecondScoreGreaterThan(Integer value) {
+            addCriterion("second_score >", value, "secondScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSecondScoreGreaterThanOrEqualTo(Integer value) {
+            addCriterion("second_score >=", value, "secondScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSecondScoreLessThan(Integer value) {
+            addCriterion("second_score <", value, "secondScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSecondScoreLessThanOrEqualTo(Integer value) {
+            addCriterion("second_score <=", value, "secondScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSecondScoreIn(List<Integer> values) {
+            addCriterion("second_score in", values, "secondScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSecondScoreNotIn(List<Integer> values) {
+            addCriterion("second_score not in", values, "secondScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSecondScoreBetween(Integer value1, Integer value2) {
+            addCriterion("second_score between", value1, value2, "secondScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSecondScoreNotBetween(Integer value1, Integer value2) {
+            addCriterion("second_score not between", value1, value2, "secondScore");
+            return (Criteria) this;
+        }
+
         public Criteria andScoreIsNull() {
             addCriterion("score is null");
             return (Criteria) this;

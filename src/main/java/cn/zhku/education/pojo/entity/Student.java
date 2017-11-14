@@ -12,6 +12,10 @@ public class Student implements Serializable {
 
     private Integer playtimes;
 
+    private Integer firstScore;
+
+    private Integer secondScore;
+
     private Integer score;
 
     private Integer lastRank;
@@ -52,6 +56,22 @@ public class Student implements Serializable {
         this.playtimes = playtimes;
     }
 
+    public Integer getFirstScore() {
+        return firstScore;
+    }
+
+    public void setFirstScore(Integer firstScore) {
+        this.firstScore = firstScore;
+    }
+
+    public Integer getSecondScore() {
+        return secondScore;
+    }
+
+    public void setSecondScore(Integer secondScore) {
+        this.secondScore = secondScore;
+    }
+
     public Integer getScore() {
         return score;
     }
@@ -86,6 +106,8 @@ public class Student implements Serializable {
         sb.append(", collegeClass=").append(collegeClass);
         sb.append(", name=").append(name);
         sb.append(", playtimes=").append(playtimes);
+        sb.append(", firstScore=").append(firstScore);
+        sb.append(", secondScore=").append(secondScore);
         sb.append(", score=").append(score);
         sb.append(", lastRank=").append(lastRank);
         sb.append(", enterTime=").append(enterTime);

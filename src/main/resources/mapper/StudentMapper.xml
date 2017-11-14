@@ -6,6 +6,8 @@
     <result column="college_class" property="collegeClass" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="playtimes" property="playtimes" jdbcType="INTEGER" />
+    <result column="first_score" property="firstScore" jdbcType="INTEGER" />
+    <result column="second_score" property="secondScore" jdbcType="INTEGER" />
     <result column="score" property="score" jdbcType="INTEGER" />
     <result column="last_rank" property="lastRank" jdbcType="INTEGER" />
     <result column="enter_time" property="enterTime" jdbcType="TIMESTAMP" />
@@ -69,7 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    phone, college_class, name, playtimes, score, last_rank, enter_time
+    phone, college_class, name, playtimes, first_score, second_score, score, last_rank, 
+    enter_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.zhku.education.pojo.entity.StudentExample" >
     select
@@ -103,11 +106,13 @@
   </delete>
   <insert id="insert" parameterType="cn.zhku.education.pojo.entity.Student" >
     insert into student (phone, college_class, name, 
-      playtimes, score, last_rank, 
-      enter_time)
+      playtimes, first_score, second_score, 
+      score, last_rank, enter_time
+      )
     values (#{phone,jdbcType=VARCHAR}, #{collegeClass,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{playtimes,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{lastRank,jdbcType=INTEGER}, 
-      #{enterTime,jdbcType=TIMESTAMP})
+      #{playtimes,jdbcType=INTEGER}, #{firstScore,jdbcType=INTEGER}, #{secondScore,jdbcType=INTEGER}, 
+      #{score,jdbcType=INTEGER}, #{lastRank,jdbcType=INTEGER}, #{enterTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.zhku.education.pojo.entity.Student" >
     insert into student
@@ -123,6 +128,12 @@
       </if>
       <if test="playtimes != null" >
         playtimes,
+      </if>
+      <if test="firstScore != null" >
+        first_score,
+      </if>
+      <if test="secondScore != null" >
+        second_score,
       </if>
       <if test="score != null" >
         score,
@@ -146,6 +157,12 @@
       </if>
       <if test="playtimes != null" >
         #{playtimes,jdbcType=INTEGER},
+      </if>
+      <if test="firstScore != null" >
+        #{firstScore,jdbcType=INTEGER},
+      </if>
+      <if test="secondScore != null" >
+        #{secondScore,jdbcType=INTEGER},
       </if>
       <if test="score != null" >
         #{score,jdbcType=INTEGER},
@@ -179,6 +196,12 @@
       <if test="record.playtimes != null" >
         playtimes = #{record.playtimes,jdbcType=INTEGER},
       </if>
+      <if test="record.firstScore != null" >
+        first_score = #{record.firstScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.secondScore != null" >
+        second_score = #{record.secondScore,jdbcType=INTEGER},
+      </if>
       <if test="record.score != null" >
         score = #{record.score,jdbcType=INTEGER},
       </if>
@@ -199,6 +222,8 @@
       college_class = #{record.collegeClass,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       playtimes = #{record.playtimes,jdbcType=INTEGER},
+      first_score = #{record.firstScore,jdbcType=INTEGER},
+      second_score = #{record.secondScore,jdbcType=INTEGER},
       score = #{record.score,jdbcType=INTEGER},
       last_rank = #{record.lastRank,jdbcType=INTEGER},
       enter_time = #{record.enterTime,jdbcType=TIMESTAMP}
@@ -218,6 +243,12 @@
       <if test="playtimes != null" >
         playtimes = #{playtimes,jdbcType=INTEGER},
       </if>
+      <if test="firstScore != null" >
+        first_score = #{firstScore,jdbcType=INTEGER},
+      </if>
+      <if test="secondScore != null" >
+        second_score = #{secondScore,jdbcType=INTEGER},
+      </if>
       <if test="score != null" >
         score = #{score,jdbcType=INTEGER},
       </if>
@@ -235,6 +266,8 @@
     set college_class = #{collegeClass,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       playtimes = #{playtimes,jdbcType=INTEGER},
+      first_score = #{firstScore,jdbcType=INTEGER},
+      second_score = #{secondScore,jdbcType=INTEGER},
       score = #{score,jdbcType=INTEGER},
       last_rank = #{lastRank,jdbcType=INTEGER},
       enter_time = #{enterTime,jdbcType=TIMESTAMP}
