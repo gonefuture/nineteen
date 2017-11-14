@@ -2,7 +2,7 @@
  * @Author: 伟龙-Willon qq:1061258787 
  * @Date: 2017-10-25 14:56:54 
  * @Last Modified by: 伟龙-Willon
- * @Last Modified time: 2017-11-11 22:25:57
+ * @Last Modified time: 2017-11-14 14:27:11
  */
 /*
  * @Author: 伟龙-Willon qq:1061258787 
@@ -35,7 +35,23 @@ var viewCommand = (function(msg){
          ].join(''),
          errorView:[
              "{#rightAnswer#}"
-         ].join('')
+         ].join(''),
+         rankView:[
+            "<tr>",
+                "<td>{#rank_num#}</td>",
+                "<td>{#name}</td#>",
+                "<td>{#game1_grade#}</td>",
+                "<td>{#game2_grade#}</td>",
+                "<td>{#sum_grade#}</td>",
+            "</tr>"
+         ].join(''),
+         myGradeView:[
+            "<tr>",
+                "<td>{#game1_grade#}</td>",
+                "<td>{#game2_grade#}</td>",
+                "<td>{#sum_grade#}</td>",
+            "</tr>"
+         ].join(''),
      };
      function formateString(str,obj){         //模板核心代码，替换{# #}之间的字符串
          return str.replace(/\{#(\w+)#\}/g,function(match,key){

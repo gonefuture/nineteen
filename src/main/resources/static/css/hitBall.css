@@ -18,7 +18,7 @@ a{
 #background{
     position: relative;
     height: 100vh;
-    background: url('../images/bg-min.jpg') no-repeat top/100% 100%;
+    background: url('../images/y3-1.jpg') no-repeat top/100% 100%;
     overflow: hidden;
     -webkit-tap-highlight-color:rgba(0,0,0,0);
     -webkit-tap-highlight-color:transparent; /* For some Androids,个人感觉是低版本的安卓，4.0以下 */  

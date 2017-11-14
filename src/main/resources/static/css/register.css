@@ -68,7 +68,6 @@ a{
     text-indent: 20px;
     background: none;
     font-size: calc(100vw/32);
-    
 }
 @-webkit-keyframes upAndDown{
     0%{

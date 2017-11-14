@@ -2,7 +2,7 @@
  * @Author: 伟龙-Willon qq:1061258787 
  * @Date: 2017-11-12 18:20:58 
  * @Last Modified by: 伟龙-Willon
- * @Last Modified time: 2017-11-14 16:14:40
+ * @Last Modified time: 2017-11-14 16:27:42
  */
 /**
  * OOP打气球小游戏
@@ -19,15 +19,14 @@
     /**
      * 声明原生关键帧动画
      */
-    window.requestAnimationFrame = window.requestAnimationFrame || 
-                                   window.webkitRequestAnimationFrame || 
+    window.requestAnimationFrame = window.webkitRequestAnimationFrame || 
                                    window.mozRequestAnimationFrame || 
                                    window.msRequestAnimationFrame ||
                                    window.oRequestAnimationFrame ||
+                                   window.requestAnimationFrame || 
                                    function(fn){ return setTimeout(fn,1000/60);}
 
-    window.cancelAnimationFrame = window.cancelAnimationFrame || 
-                                  window.webkitCancelAnimationFrame ||
+    window.cancelAnimationFrame = window.webkitCancelAnimationFrame ||
                                   window.mozCancelAnimationFrame || 
                                   window.msCancelAnimationFrame || 
                                   window.oCancelAnimationFrame || 
@@ -36,6 +35,7 @@
                                   window.mozCancelRequestAnimationFrame || 
                                   window.msCancelRequestAnimationFrame || 
                                   window.oCancelRequestAnimationFrame || 
+                                  window.cancelAnimationFrame || 
                                   clearTimeout;
     /**
      * 1、获取视窗大小

@@ -54,24 +54,56 @@ a{
 
 @-webkit-keyframes upAndDown{
     0%{
-        bottom:21%;
+        bottom:1%;
     }
     50%{
-        bottom:22%;
+        bottom:2%;
     }
     100%{
-        bottom:21%;
+        bottom:1%;
+    }
+}
+@-moz-keyframes upAndDown{
+    0%{
+        bottom:1%;
+    }
+    50%{
+        bottom:2%;
+    }
+    100%{
+        bottom:1%;
+    }
+}
+@-ms-keyframes upAndDown{
+    0%{
+        bottom:1%;
+    }
+    50%{
+        bottom:2%;
+    }
+    100%{
+        bottom:1%;
+    }
+}
+@-o-keyframes upAndDown{
+    0%{
+        bottom:1%;
+    }
+    50%{
+        bottom:2%;
+    }
+    100%{
+        bottom:1%;
     }
 }
 @keyframes upAndDown{
     0%{
-        bottom:21%;
+        bottom:1%;
     }
     50%{
-        bottom:22%;
+        bottom:2%;
     }
     100%{
-        bottom:21%;
+        bottom:1%;
     }
 }
-
