@@ -38,7 +38,7 @@ function browserRedirect() {
         var reg = {
             name : /[\u4e00-\u9fa5]{2,4}$/,
             phone : /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/,
-            college_class : /^[\u4E00-\u9FA50-9_]{2,4}[0-9]{3}$/,
+            college_class : /^[\u4E00-\u9FA5]{2,3}[0-9]{3}$/,
         }
         $('#phone').blur(function () {
             var phone = $(this).val();
