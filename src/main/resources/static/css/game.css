@@ -37,14 +37,22 @@ a:link,a:visited,a:hover,a:active{
     position: relative;
     padding: calc(100vw/15);
     height: 100vh;
-    background: url('../images/bg2-min.jpg') no-repeat top/100% 100%;
+    /* background: url('../images/bg2-min.jpg') no-repeat top/100% 100%; */
+    background-image: url('../images/bg2-min.jpg');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 100% 100%;
     overflow: hidden;
 }
 .content #question{
     width: 100%;
     height:55%;
     border-radius: 8px;
-    background: url('../images/qBg.jpg') no-repeat top/cover;
+    /* background: url('../images/qBg.jpg') no-repeat top/cover; */
+    background-image: url('../images/qBg.jpg');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
 }
 #question .head{
     width:100%;
@@ -63,7 +71,11 @@ a:link,a:visited,a:hover,a:active{
     float: right;
     width:calc(100vw/14);
     height:calc(100vw/14);
-    background: url('../images/tick.png') no-repeat top/cover;
+    /* background: url('../images/tick.png') no-repeat top/cover; */
+    background-image: url('../images/tick.png');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
     margin-right: 10px;
 }
 #question .questionList{
@@ -89,7 +101,11 @@ ul li a{
     padding: calc(100vh/50) 0px;
     text-align: center;
     border-radius: 15px;
-    background: url('../images/li2.jpg') no-repeat top/100% 100%;
+    /* background: url('../images/li2.jpg') no-repeat top/100% 100%; */
+    background-image: url('../images/li2.jpg');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 100% 100%;
     font-size: calc(100vw/42);
     margin-top:calc(100vw/40);
 }

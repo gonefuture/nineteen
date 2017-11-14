@@ -21,11 +21,11 @@ a{
     position: relative;
     padding: calc(100vw/15);
     height: 100vh;
-    background: url('../images/r-bg.jpg') no-repeat top/100% 100%;
-    /* background-image: url('../images/r-bg.jpg');
+    /* background: url('../images/r-bg.jpg') no-repeat top/100% 100%; */
+    background-image: url('../images/r-bg.jpg');
     background-repeat: no-repeat;
     background-position: top;
-    background-size: 100% 100%; */
+    background-size: 100% 100%;
 }
 .myInfo{
     margin: 24% auto 2%;
@@ -62,11 +62,11 @@ a{
     text-shadow: 2px 2px 4px rgba(0, 0, 0,.3);
     font-size: 20px;
     font-weight: 600px;
-    background: url('../images/y3-3.png') no-repeat top/100% 100%;
-    /* background-image: url('../images/y3-3.png');
+    /* background: url('../images/y3-3.png') no-repeat top/100% 100%; */
+    background-image: url('../images/y3-3.png');
     background-repeat: no-repeat;
     background-position: top;
-    background-size: 100% 100%; */
+    background-size: 100% 100%;
 }
 
 .rankContent{

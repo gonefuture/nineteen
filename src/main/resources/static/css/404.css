@@ -19,7 +19,11 @@ a{
     position: relative;
     padding: calc(100vw/15);
     height: 100vh;
-    background: url('../images/bg-min.jpg') no-repeat top/100% 100%;
+    /* background: url('../images/bg-min.jpg') no-repeat top/100% 100%; */
+    background-image: url('../images/bg-min.jpg');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 100% 100%;
 }
 #title{
     margin: 0px auto;
