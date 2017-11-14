@@ -3,6 +3,7 @@ package cn.zhku.education.modules.student.controller;
 import cn.zhku.education.model.CommonQo;
 import cn.zhku.education.model.Message;
 import cn.zhku.education.modules.student.dao.StudentDao;
+import cn.zhku.education.modules.student.model.StudentRankVo;
 import cn.zhku.education.pojo.dao.HistoryMapper;
 import cn.zhku.education.pojo.dao.StudentMapper;
 import cn.zhku.education.pojo.entity.History;
@@ -90,6 +91,7 @@ public class StudentController {
 
         //  更新学生记录
         Student student = new Student();
+        student.setPhone(studentSession.getPhone());
         student.setFirstScore(score);
         studentMapper.updateByPrimaryKeySelective(student);
 
@@ -145,7 +147,7 @@ public class StudentController {
     /**
      *  显示排名，默认是显示前十的排名
      * @param commonQo  通用查询类
-     * @return
+     * @return  PageInfo
      */
     @RequestMapping("/student/rank")
     public PageInfo<Student> RankList(CommonQo commonQo) {
@@ -194,8 +196,20 @@ public class StudentController {
     }
 
 
+    /**
+     *  获取排名信息
+     * @param httpSession   当前会话
+     * @return  StudentRankVo
+     */
+    @RequestMapping("/myRank")
+    public StudentRankVo myRank(HttpSession httpSession) {
+        Student studentSession = (Student) httpSession.getAttribute("student");
 
-    public Integer myRank() {
-        return studentDao.myrank();
+        StudentRankVo studentRankVo = studentDao.myrank(studentSession.getPhone());
+        Student student = new Student();
+        student.setLastRank(studentRankVo.getRownum());
+        studentMapper.updateByPrimaryKeySelective(student);
+        return studentRankVo;
+
     }
 }

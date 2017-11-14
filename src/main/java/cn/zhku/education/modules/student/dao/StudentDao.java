@@ -1,5 +1,7 @@
 package cn.zhku.education.modules.student.dao;
 
+import cn.zhku.education.modules.student.model.StudentRankVo;
+import cn.zhku.education.pojo.entity.Student;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -13,7 +15,9 @@ public interface StudentDao {
      *  查找排名
      * @return  排名
      */
-    @Select(" SELECT (SELECT COUNT(s.score)+1 FROM student s WHERE s.score>t.score) rank FROM student t ORDER BY t.score DESC")
-    Integer myrank();
+    @Select("SELECT * FROM ( " +
+            "SELECT (@rownum:=@rownum+1) AS rownum, a.* FROM `student` a, (SELECT @rownum:= 0 ) r  ORDER BY a.`score` DESC  " +
+            ") AS b  WHERE phone = #{phone}")
+    StudentRankVo myrank(String phone);
 
 }
