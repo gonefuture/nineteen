@@ -22,6 +22,10 @@ a{
     padding: calc(100vw/15);
     height: 100vh;
     background: url('../images/r-bg.jpg') no-repeat top/100% 100%;
+    /* background-image: url('../images/r-bg.jpg');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 100% 100%; */
 }
 .myInfo{
     margin: 24% auto 2%;
@@ -59,7 +63,12 @@ a{
     font-size: 20px;
     font-weight: 600px;
     background: url('../images/y3-3.png') no-repeat top/100% 100%;
+    /* background-image: url('../images/y3-3.png');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 100% 100%; */
 }
+
 .rankContent{
     width:100%;
     height:calc(100vh/5);
@@ -79,7 +88,6 @@ a{
     padding: calc(100vh/43) 0px;
     border:2px solid #fff;
     border-radius: 10px;
-    
 }
 
 /* tr{
@@ -121,10 +129,12 @@ th{
     /* text-shadow: 2px 2px 4px rgb(0, 0, 0); */
     text-indent: 5px;
 }
+
 tr{
     position: relative;
 	border-bottom:2px solid #f0f0f0;
 }
+
 tr:last-child{/*因为要配合<tr><th></th></tr>使用列标题上不能有边框*/
 	border:none;
 }

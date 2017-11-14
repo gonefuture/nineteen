@@ -2,7 +2,7 @@
  * @Author: 伟龙-Willon qq:1061258787 
  * @Date: 2017-11-10 17:17:39 
  * @Last Modified by: 伟龙-Willon
- * @Last Modified time: 2017-11-13 20:19:11
+ * @Last Modified time: 2017-11-14 18:07:04
  */
 
 /**
@@ -41,16 +41,22 @@ function browserRedirect() {
             college_class : /^[\u4E00-\u9FA50-9_]+$/
         }
         $('#phone').blur(function () {
-            if(reg.phone.test($(this).val())){
-                $.get(CONFIG.PORNAME+CONFIG.CHECKPHONE+'/'+$(this).val(),function (res) {
+            var phone = $(this).val();
+            if(reg.phone.test(phone)){
+                $.get(CONFIG.PORNAME+CONFIG.CHECKPHONE+'/'+phone,function (res) {
                     if (res) {
                         /**
                          *第二次玩
                          *
                          */
-                        confirm(res.phone + '欢迎您再次登陆，继续刷分\n');
-                        var phone = decodeURI(res.phone) || '';
-                        window.location.href = CONFIG.TO + '?username=' + phone;
+                        confirm('欢迎您再次登陆，继续刷分\n');
+                        $.post(CONFIG.PORNAME+CONFIG.SUBMIT,{'phone':phone},function(res){
+                            if(res){
+                                phone = decodeURI(phone) || '';
+                                window.location.href = CONFIG.TO + '?username=' + phone;
+                            }
+                        });
+
                     }
                 });
             }
@@ -64,6 +70,8 @@ function browserRedirect() {
                     $.post(CONFIG.PORNAME+CONFIG.SUBMIT,query,function(res){
                         if(res){
                             console.log(res);
+                            save('willon_phone',query.phone);
+                            save('willon_name',query.name);
                             var username = decodeURI(query.name) || '';
                             window.location.href = CONFIG.TO+'?username='+username;
                         }else{

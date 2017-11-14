@@ -2,7 +2,7 @@
  * @Author: 伟龙-Willon qq:1061258787 
  * @Date: 2017-11-10 18:25:57 
  * @Last Modified by: 伟龙-Willon
- * @Last Modified time: 2017-11-11 22:56:54
+ * @Last Modified time: 2017-11-14 17:58:35
  */
 /**
  * 1、getDate();
@@ -47,7 +47,7 @@ if(!browserRedirect()){
             const URL = {
                 PROJECTNAME:'/nineteen',
                 GETQUESTION:'/question/list',
-                SENDANSWER:'',
+                SENDGRADE:'/prePass',
                 FINALLY:'./grade.html'
             };
 
@@ -129,7 +129,8 @@ if(!browserRedirect()){
                          * 跳转页面
                          */
                         $(".alert").fadeOut();
-                        window.location.href = URL.FINALLY+'?grade='+decodeURI(_grade);
+                        contorller.sendAnswer();
+
                     }else{
                         /**
                          * 还没答完将继续渲染页面
@@ -145,9 +146,11 @@ if(!browserRedirect()){
                     }
                 },
                 sendAnswer:function(){
-                    $.post(URL.PROJECTNAME+URL.SENDANSWER,{'grade1':_grade},function(res){
+                    $.get(URL.PROJECTNAME+URL.SENDGRADE+'?score='+(_grade*20),function(res){
                         if(res){
-                            this.openNewWindow();
+                            console.log('submited');
+                            //this.openNewWindow();
+                            window.location.href = URL.FINALLY+'?grade='+decodeURI(_grade);
                         }else{
                             alert('抱歉！本题答案提交失败');
                         }

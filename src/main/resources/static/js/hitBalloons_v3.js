@@ -182,24 +182,19 @@
      * 4、分数记录/上传者
      */
     var Grade = function(site){
-        var URL = {};
+        // var URL = {};
         this.grade = 0;
         this.site = site;
-        this.url = Object.defineProperty(URL,'url',{
-            value : '',//上传路径
-            writable : false,
-            enumerable : true,
-            configurable : false
-        });
+        this.url = "/nineteen/lastPass?score=";
     }
     /**
      * 分数上传服务器动作
      */
     Grade.prototype.submit = function(){
-        $.post(this.url,{'grade':''},function(res){
+        $.get(this.url+this.grade,function(res){
             if(res){
                 //跳转到排行榜的位置
-                window.location.href = './race.html';
+                // window.location.href = './race.html';
             }else{
                 alert('抱歉！分数提交失败');
             }

@@ -2,14 +2,14 @@
  * @Author: 伟龙-Willon qq:1061258787 
  * @Date: 2017-11-10 17:17:39 
  * @Last Modified by: 伟龙-Willon
- * @Last Modified time: 2017-11-14 14:40:14
+ * @Last Modified time: 2017-11-14 18:23:01
  */
 
- /**
-  * 具体操作
-  * 1、一个开始按钮的监听
-  * 2、页面的跳转
-  */
+/**
+ * 具体操作
+ * 1、一个开始按钮的监听
+ * 2、页面的跳转
+ */
 /**
  * 浏览器嗅探
  * 仅对移动端开放
@@ -39,52 +39,64 @@ function browserRedirect() {
         /**
          * 2排行榜动画定时器
          */
-       var timer = '';
-        
+        var timer = '';
+
+        const URL = {
+            PRONAME:'/nineteen',
+            MYGRADE:'/myhistory',
+            RANK:'/student/rank'
+        }
         /**
          * 3从缓存中获取用户数据
          * id值
          */
-        $.get(''+'',function(res){
+        $.get(URL.PRONAME+URL.MYGRADE,function(res){
             if(res){
                 //渲染个人信息
+                res.list.forEach(function (item) {
+                    item.sum = parseInt(item.firstScore) + parseInt(item.secondScore);
+                })
                 viewCommand({
                     command:'display',
-                    param:[$('tbody')[0],res,'myGradeView']
+                    param:[$('tbody')[0],res.list[0],'myGradeView']
                 })
             }else{
                 alert('抱歉！获取个人成绩失败');
             }
         });
-
         /**
          * 4获取排行榜数据
          */
-        $.get('',function(res){
-            if(res){
+        $.get(URL.PRONAME+URL.RANK,function(res){
+            if(res.list.length>=0){
 
+                /**
+                 *手动添加排名
+                 */
+                res.list.forEach(function (item,index) {
+                    item.rank_num = index+1;
+                });
                 //渲染排行榜
                 viewCommand({
                     command : 'display',
-                    param:[$('table')[1],res,'rankView']
+                    param:[$('table')[2],res.list,'rankView']
                 });
 
-                 /**
+                /**
                  * 开启排行榜动画
-                 */
+                 */if(res.list.length>=4){
                     timer = setInterval(function(){
-                    $(".rankContent table").animate({'top':(-win.width/15)},function(){
+                        $(".rankContent table").animate({'top':(-win.width/15)},function(){
                             $(".rankContent table").append($(".rankContent table tr:first"));
                             $(".rankContent table").css('top','0');
-                    })
-                },2000);
-
+                        });
+                    },2000);
+                }
             }else{
-                
                 alert('抱歉！获取排名信息失败');
             }
         });
-        
+
     }
 }
 browserRedirect();

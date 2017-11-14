@@ -2,7 +2,7 @@
  * @Author: 伟龙-Willon qq:1061258787 
  * @Date: 2017-11-12 18:20:58 
  * @Last Modified by: 伟龙-Willon
- * @Last Modified time: 2017-11-14 16:27:42
+ * @Last Modified time: 2017-11-14 16:42:42
  */
 /**
  * OOP打气球小游戏
@@ -19,24 +19,11 @@
     /**
      * 声明原生关键帧动画
      */
-    window.requestAnimationFrame = window.webkitRequestAnimationFrame || 
-                                   window.mozRequestAnimationFrame || 
-                                   window.msRequestAnimationFrame ||
-                                   window.oRequestAnimationFrame ||
-                                   window.requestAnimationFrame || 
-                                   function(fn){ return setTimeout(fn,1000/60);}
-
-    window.cancelAnimationFrame = window.webkitCancelAnimationFrame ||
-                                  window.mozCancelAnimationFrame || 
-                                  window.msCancelAnimationFrame || 
-                                  window.oCancelAnimationFrame || 
-                                  window.cancelRequestAnimationFrame || 
-                                  window.webkitCancelRequestAnimationFrame ||
-                                  window.mozCancelRequestAnimationFrame || 
-                                  window.msCancelRequestAnimationFrame || 
-                                  window.oCancelRequestAnimationFrame || 
-                                  window.cancelAnimationFrame || 
-                                  clearTimeout;
+    var vendors = ['ms', 'moz', 'webkit', 'o'];    
+    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {    
+        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];    
+        window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];    
+    }
     /**
      * 1、获取视窗大小
      */

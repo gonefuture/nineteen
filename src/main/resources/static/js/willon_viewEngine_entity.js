@@ -2,7 +2,7 @@
  * @Author: 伟龙-Willon qq:1061258787 
  * @Date: 2017-10-25 14:56:54 
  * @Last Modified by: 伟龙-Willon
- * @Last Modified time: 2017-11-14 14:27:11
+ * @Last Modified time: 2017-11-14 18:46:18
  */
 /*
  * @Author: 伟龙-Willon qq:1061258787 
@@ -39,17 +39,16 @@ var viewCommand = (function(msg){
          rankView:[
             "<tr>",
                 "<td>{#rank_num#}</td>",
-                "<td>{#name}</td#>",
-                "<td>{#game1_grade#}</td>",
-                "<td>{#game2_grade#}</td>",
-                "<td>{#sum_grade#}</td>",
+                "<td>{#name#}</td#>",
+                "<td>{#collegeClass#}</td>",
+                "<td>{#score#}</td>",
             "</tr>"
          ].join(''),
          myGradeView:[
             "<tr>",
-                "<td>{#game1_grade#}</td>",
-                "<td>{#game2_grade#}</td>",
-                "<td>{#sum_grade#}</td>",
+                "<td>{#firstScore#}</td>",
+                "<td>{#secondScore#}</td>",
+                "<td>{#sum#}</td>",
             "</tr>"
          ].join(''),
      };
