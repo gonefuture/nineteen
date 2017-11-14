@@ -37,7 +37,7 @@ CREATE TABLE `dict` (
 DROP TABLE IF EXISTS `history`;
 
 CREATE TABLE `history` (
-  `hid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `hid` varchar(36) NOT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `first_score` int(11) DEFAULT NULL,
   `second_score` int(11) DEFAULT NULL,
@@ -45,11 +45,11 @@ CREATE TABLE `history` (
   `score` int(11) DEFAULT NULL,
   `hrate` int(11) DEFAULT NULL,
   PRIMARY KEY (`hid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `history` */
 
-insert  into `history`(`hid`,`phone`,`first_score`,`second_score`,`htime`,`score`,`hrate`) values (1,'1235456',NULL,NULL,NULL,NULL,NULL);
+insert  into `history`(`hid`,`phone`,`first_score`,`second_score`,`htime`,`score`,`hrate`) values ('1','1235456',NULL,NULL,NULL,NULL,NULL),('2','1112454',NULL,NULL,NULL,NULL,NULL),('32B93983C3284C2F9572849B1515F76C','411010',NULL,10,NULL,20,NULL),('5018B7ADCF4F4A84B801F96921147516','1213545',10,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `permission` */
 
@@ -177,7 +177,7 @@ CREATE TABLE `student` (
 
 /*Data for the table `student` */
 
-insert  into `student`(`phone`,`college_class`,`name`,`playtimes`,`score`,`last_rank`,`enter_time`) values ('1235456',NULL,'������',NULL,NULL,NULL,NULL),('12634343',NULL,'江伟龙',NULL,101,NULL,NULL),('13533805040',NULL,'钱伟健',NULL,10,NULL,NULL),('213',NULL,NULL,NULL,NULL,NULL,NULL),('4524546345242',NULL,'jjjaf',NULL,10,NULL,NULL);
+insert  into `student`(`phone`,`college_class`,`name`,`playtimes`,`score`,`last_rank`,`enter_time`) values ('1112454',NULL,NULL,NULL,NULL,NULL,NULL),('1213545',NULL,NULL,NULL,NULL,NULL,NULL),('1235456',NULL,'������',NULL,NULL,NULL,NULL),('12634343',NULL,'江伟龙',NULL,101,NULL,NULL),('13533805040',NULL,'钱伟健',NULL,10,NULL,NULL),('213',NULL,NULL,NULL,NULL,NULL,NULL),('411010',NULL,NULL,NULL,20,NULL,NULL),('4524546345242',NULL,'jjjaf',NULL,10,NULL,NULL);
 
 /*Table structure for table `user` */
 

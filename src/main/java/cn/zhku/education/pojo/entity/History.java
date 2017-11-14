@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class History implements Serializable {
-    private Long hid;
+    private String hid;
 
     private String phone;
 
@@ -20,12 +20,12 @@ public class History implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Long getHid() {
+    public String getHid() {
         return hid;
     }
 
-    public void setHid(Long hid) {
-        this.hid = hid;
+    public void setHid(String hid) {
+        this.hid = hid == null ? null : hid.trim();
     }
 
     public String getPhone() {

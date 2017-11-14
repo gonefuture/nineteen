@@ -10,7 +10,7 @@ public interface HistoryMapper {
 
     int deleteByExample(HistoryExample example);
 
-    int deleteByPrimaryKey(Long hid);
+    int deleteByPrimaryKey(String hid);
 
     int insert(History record);
 
@@ -18,7 +18,7 @@ public interface HistoryMapper {
 
     List<History> selectByExample(HistoryExample example);
 
-    History selectByPrimaryKey(Long hid);
+    History selectByPrimaryKey(String hid);
 
     int updateByExampleSelective(@Param("record") History record, @Param("example") HistoryExample example);
 
