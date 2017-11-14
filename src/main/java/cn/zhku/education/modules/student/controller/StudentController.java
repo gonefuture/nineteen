@@ -151,7 +151,7 @@ public class StudentController {
      */
     @RequestMapping("/student/rank")
     public PageInfo<Student> RankList(CommonQo commonQo) {
-        PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageSize(),"score");
+        PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageSize(),"score desc");
         return new PageInfo<>(studentMapper.selectByExample(null));
     }
 
@@ -177,7 +177,7 @@ public class StudentController {
      */
     @RequestMapping("/myhistory")
     public PageInfo<History> myHistory(CommonQo commonQo, HttpSession httpSession) {
-        PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageNum(),"htime");
+        PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageSize(),"htime");
         HistoryExample historyExample = new HistoryExample();
         Student studentSession = (Student) httpSession.getAttribute("student");
         historyExample.or().andPhoneEqualTo(studentSession.getPhone());
