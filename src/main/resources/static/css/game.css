@@ -53,6 +53,9 @@ a:link,a:visited,a:hover,a:active{
     background-repeat: no-repeat;
     background-position: top;
     background-size: cover;
+
+    overflow: auto;
+
 }
 #question .head{
     width:100%;
@@ -81,6 +84,7 @@ a:link,a:visited,a:hover,a:active{
 #question .questionList{
     width:100%;
     padding: 0px  calc(100vw/33);
+    font-size: calc(100vw/40);
 }
 p span{
     font-size:calc(100vw/13);
@@ -106,7 +110,7 @@ ul li a{
     background-repeat: no-repeat;
     background-position: top;
     background-size: 100% 100%;
-    font-size: calc(100vw/42);
+    font-size: calc(100vw/42) !important;
     margin-top:calc(100vw/40);
 }
 

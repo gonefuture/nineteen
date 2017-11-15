@@ -53,7 +53,7 @@ if(!browserRedirect()){
 
             return {
                 setData:function(){
-                    $.get(URL.PROJECTNAME+URL.GETQUESTION+'?number=5',function(res){
+                    $.get(URL.PROJECTNAME+URL.GETQUESTION+'?number=8',function(res){
                         /**
                          * 数据转换
                          *保存数据

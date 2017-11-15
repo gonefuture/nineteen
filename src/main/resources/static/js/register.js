@@ -30,15 +30,18 @@ function browserRedirect() {
         const CONFIG = {
             PORNAME : '/nineteen',
             ALTER : '提交数据失败',
-            INFOALERT : '请填写合法的信息',
+            INFOALERT:'请填写合法信息',
+            NAMEINFOALERT : '请填写合法的名字',
+            PHONEINFOALERT : '请填写合法的手机号',
+            COLLEGECLASSINFOALERT : '请填写合法的班级名或去掉空格',
             CHECKPHONE:'/student/',
             SUBMIT : '/student/begin',
             TO : './game_index.html'
         };
         var reg = {
-            name : /[\u4e00-\u9fa5]{2,4}$/,
+            name : /^[\u4e00-\u9fa5]{2,4}$/,
             phone : /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/,
-            college_class : /^[\u4E00-\u9FA5]{2,3}[0-9]{3}$/,
+            college_class : /^[\u4E00-\u9FA5]{2,3}[0-9]{3}$/g,
         }
         $('#phone').blur(function () {
             var phone = $(this).val();
@@ -63,25 +66,39 @@ function browserRedirect() {
         });
         $('#start').click(function(){
             var query = queryParse.call($('form'));
-            if(reg.name.test(query.name)&&reg.phone.test(query.phone)&&reg.college_class.test(query.collegeClass)){
-                    /**
-                     *第一次玩插入
-                     */
-                    $.post(CONFIG.PORNAME+CONFIG.SUBMIT,query,function(res){
-                        if(res){
-                            console.log(res);
-                            save('willon_phone',query.phone);
-                            save('willon_name',query.name);
-                            var username = decodeURI(query.name) || '';
-                            window.location.href = CONFIG.TO+'?username='+username;
-                        }else{
-                            alert(CONFIG.ALTER);
-                        }
-                    });
-            }else{
+            var nameFlag = reg.name.test(query.name);
+            var phoneFlag = reg.phone.test(query.phone);
+            var collegeClassFlag = reg.college_class.test(query.collegeClass);
+            if(!nameFlag && !phoneFlag && !collegeClassFlag){
                 alert(CONFIG.INFOALERT);
+            }else{
+                if(phoneFlag){
+                    if(nameFlag){
+                        if(collegeClassFlag){
+                            /**
+                             *第一次玩插入
+                             */
+                            $.post(CONFIG.PORNAME+CONFIG.SUBMIT,query,function(res){
+                                if(res){
+                                    // console.log(res);
+                                    // save('willon_phone',query.phone);
+                                    // save('willon_name',query.name);
+                                    var username = decodeURI(query.name) || '';
+                                    window.location.href = CONFIG.TO+'?username='+username;
+                                }else{
+                                    alert(CONFIG.ALTER);
+                                }
+                            });
+                        }else{
+                            alert(CONFIG.COLLEGECLASSINFOALERT);
+                        }
+                    }else{
+                        alert(CONFIG.NAMEINFOALERT);
+                    }
+                }else{
+                    alert(CONFIG.PHONEINFOALERT);
+                }
             }
-
         });
 
     }
