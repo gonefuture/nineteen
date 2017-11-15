@@ -84,7 +84,7 @@ a:link,a:visited,a:hover,a:active{
 #question .questionList{
     width:100%;
     padding: 0px  calc(100vw/33);
-    font-size: calc(100vw/40);
+    font-size: calc(100vw/33);
 }
 p span{
     font-size:calc(100vw/13);
