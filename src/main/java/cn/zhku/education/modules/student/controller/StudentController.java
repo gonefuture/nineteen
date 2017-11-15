@@ -76,7 +76,7 @@ public class StudentController {
      */
     @RequestMapping("/prePass")
     public Message prePass(Integer score,HttpSession httpSession) {
-        if (score == null  || score  > 120)
+        if (score == null  || score  > 180)
             score = 0 ;
         Student studentSession = (Student) httpSession.getAttribute("student");
         History historySession = (History) httpSession.getAttribute("history");
@@ -110,8 +110,8 @@ public class StudentController {
      */
     @RequestMapping("/lastPass")
     public Message lastPass(Integer score,HttpSession httpSession) {
-        if (score == null || score > 500)
-            score = 0 ;
+        if (score == null || score > 1000)
+            score = 100 ;
         //  获取session中的对象
         Student studentSession = (Student) httpSession.getAttribute("student");
         History historySession = (History) httpSession.getAttribute("history");
@@ -156,17 +156,6 @@ public class StudentController {
     }
 
 
-    /**
-     *  展示所有学生
-     * @param commonQo 通用查询类
-     * @return PageInfo分页
-     */
-    @RequestMapping("/student/list")
-    public PageInfo<Student> studentList(CommonQo commonQo) {
-        PageHelper.startPage(commonQo.getPageNum(),commonQo.getPageSize());
-        StudentExample studentExample = new StudentExample();
-        return new PageInfo<>(studentMapper.selectByExample(studentExample));
-    }
 
 
     /**

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+<head>
+    <meta charset="UTF-8">
+    <title>趣味十九大后台管理页面</title>
+    <!--引入static文件夹中的css布局文件-->
+    <link rel="stylesheet" href="/nineteen/js/bootstrap.min.css" />
+    <!--引用static文件夹中的jq库等静态文件-->
+    <script src="/nineteen/js/jquery-1.9.1.min.js"></script>
+    <script src="/nineteen/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="box">
+    <table class="table table-striped">
+        <caption>趣味十九大玩家信息页面</caption>
+        <thead>
+        <tr>
+            <th>学生手机</th>
+            <th>学生姓名</th>
+            <th>班级</th>
+            <th>游玩次数</th>
+            <th>第一关分数</th>
+            <th>第二关分数</th>
+            <th>最新总分数</th>
+            <th>最新排名</th>
+            <th>最新游玩时间</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        <!--此处的位置用来放置动态生成的dom节点-->
+        </tbody>
+    </table>
+</div>
+
+<div class="btn-group btn-group-lg">
+    <button type="button"  id="pre" class="btn btn-default">上一页</button>
+    <button type="button"  id="page" class="btn btn-info btn-lg ">当前页码是 1</button>
+    <button type="button" id="next" class="btn btn-default">下一页</button>
+
+</div>
+
+
+
+<script>
+
+    var nowPage = 1;
+
+    <!--使用 jq对象的方式实现解析json并构建dom展示-->
+    function showUserList(nowPage) {
+        let url = "/nineteen/student/list";   // 这里可以加各种参数，例如 url = "/admin/user/list"+ param   ,param是根据用户行为有不同的值，例如 param="?type=1&duty=饲养员"
+        let tboby = $("#tbody");  //    找到挂在的dom节点
+        $.ajax({ url:url, data:{
+            pageNum:nowPage,
+            pageSize:10
+        },success :function (pageBean) {    //  ajax成功后执行的函数
+            let data = pageBean.list;   //  从pageBean提取需要的信息,这里是List<User>
+            $(data).each(function (index,element) { //  遍历用户列表List
+                let tr = $("<tr></tr>");    //  创建新的<tr>节点
+                for( i in element){
+                    let td = $("<td>"+element[i]+"</td>");  //  //  创建新的<td>节点,并填充数据
+                    $(tr).append(td);   //  将td节点放入tr节点
+                    //var btn = $('<button/>');
+                    //btn.attr('data-id':element.)
+                }
+                $(tbody).append(tr);    //  将tr节点放入tbody中
+            });
+        }
+        });
+    }
+    showUserList(nowPage); //  执行渲染的函数
+
+    $("#pre").click( function () {
+        if (nowPage <=0)
+            alert("已经没有前一页数据了");
+            $("#tbody").html("");
+            nowPage = nowPage - 1;
+            showUserList(nowPage);
+            $("#page").text("当前页面是"+nowPage);
+        }
+
+    );
+
+    $("#next").click( function () {
+            $("#tbody").html("");
+            nowPage = nowPage + 1;
+            showUserList(nowPage);
+           $("#page").text("当前页面是"+nowPage);
+        }
+    );
+
+
+
+
+</script>
+
+</body>
+</html>

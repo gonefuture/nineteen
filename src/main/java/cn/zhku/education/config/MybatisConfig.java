@@ -1,7 +1,9 @@
 package cn.zhku.education.config;
 
+import java.io.IOException;
 import java.util.Properties;
 
+import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,4 +35,18 @@ public class MybatisConfig {
         pageHelper.setProperties(p);
         return pageHelper;
     }
+
+
+    /**
+     *创建sqlSessionFactoryBean 实例
+     * 并且设置configtion 如驼峰命名.等等
+     * 设置mapper 映射路径
+     * 设置datasource数据源
+     * @return
+     */
+//    @Bean
+//    public SqlSessionFactoryBean createSqlSessionFactoryBean() throws IOException {
+//        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+//        sqlSessionFactoryBean.
+//    }
 }
