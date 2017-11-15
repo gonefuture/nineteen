@@ -42,9 +42,9 @@
      *
      */
     var tips = {
-        arr:['公平','民主','正义','和谐','爱国','政治','廉洁','友爱','公正','谦让'],
+        arr:['富强','民主','文明','和谐','自由','平等','法治','爱国','公正','诚信','友善','敬业'],
         getTips:function () {
-            var index = Math.floor(Math.random()*this.arr.length) || 0;
+            var index = Math.floor(Math.random()*this.arr.length);
                 return this.arr[index];
         }
     };

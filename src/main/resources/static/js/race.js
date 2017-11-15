@@ -44,7 +44,7 @@ function browserRedirect() {
         const URL = {
             PRONAME:'/nineteen',
             MYGRADE:'/myhistory',
-            RANK:'/student/rank'
+            RANK:'/student/rank?pageSize=10'
         }
         /**
          * 3从缓存中获取用户数据
@@ -58,7 +58,7 @@ function browserRedirect() {
                 })
                 viewCommand({
                     command:'display',
-                    param:[$('tbody')[0],res.list[0],'myGradeView']
+                    param:[$('#myGrade')[0],res.list[0],'myGradeView']
                 })
             }else{
                 alert('抱歉！获取个人成绩失败');
